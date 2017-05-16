@@ -19,6 +19,9 @@
   "devDependencies": {
     "mint-ui": "^2.2.6",
     "autoprefixer": "^6.4.0",
+    "node-sass": "^4.5.2",
+    "sass": "^0.5.0",
+    "sass-loader": "^4.1.1",
     "babel-core": "^6.0.0",
     "babel-eslint": "^7.0.0",
     "babel-loader": "^6.0.0",
