@@ -1,35 +1,26 @@
 <template>
   <div class="header">
-    <section class="head_goback" v-if="goBack" @click="$router.go(-1)">
-      <span class="glyphicon glyphicon-chevron-left goBack" v-if="userInfo"></span>
-    </section>
-    <router-link :to="userInfo? '/about':'/login'" class="head_login">
-      <span class="glyphicon glyphicon-user user_avatar" v-if="userInfo"></span>
-      <span class="login_span" v-else>登录|注册</span>
-    </router-link>
-    <section class="title_head" v-if="headTitle">
-      <span class="title_text ellipsis">{{headTitle}}</span>
-    </section>
+    <mt-header fixed :title="headTitle">
+      <section class="head_goback" v-if="goBack" @click="$router.go(-1)" slot="left">
+        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" version="1.1">
+          <polyline points="12,18 4,9 12,0" style="fill:none;stroke:rgb(255,255,255);stroke-width:2"/>
+        </svg>
+      </section>
+      <router-link :to="egrandContext? '/about':'/login'" class="head_login" slot="right">
+        <span class="glyphicon glyphicon-user user_avatar" v-if="egrandContext"></span>
+      </router-link>
+    </mt-header>
   </div>
 </template>
 
 <script>
-  import {mapState, mapActions} from 'vuex'
+  import {mapState} from 'vuex'
   export default {
     props: ['headTitle', 'goBack'],
-    mounted(){
-      //获取用户信息
-      this.getUserInfo();
-    },
     computed: {
       ...mapState([
-        'userInfo'
+        'egrandContext'
       ]),
-    },
-    methods: {
-      ...mapActions([
-        'getUserInfo'
-      ])
     }
   }
 </script>
@@ -43,14 +34,10 @@
     top 0
     width 100%
     height 1.95rem
+    color #fff
     .head_goback
-      width: .6rem;
-      height: .8rem;
-      line-height: 2.3rem;
-      margin-left: .4rem
-      .goBack
-        color #fff
-        font-size 0.8rem
+      height: 1rem;
+      line-height: 1rem;
     .head_login
       right .2rem
       font-size .65rem
@@ -62,39 +49,4 @@
       .user_avatar
         color #fff
         font-size:0.8rem
-      .login_span
-        color #fff
-    .title_head
-      position absolute
-      top 50%
-      left 50%
-      -webkit-transform translate(-50%,-50%)
-      transform translate(-50%,-50%)
-      width 50%
-      color #fff
-      text-align center
-      margin-left -.5rem
-      .title_text
-        font-size .8rem
-        color #fff
-        text-align center
-        display block
-      .ellipsis
-        overflow hidden
-        text-overflow ellipsis
-        white-space nowrap
-    a
-      color rgba(255, 255, 255, .8)
-      transition color .15s ease
-      display inline-block
-      vertical-align middle
-      font-weight 300
-      letter-spacing .075em
-      margin-right 1.8em
-      &:hover
-        color #fff
-      &.router-link-active
-        color #fff
-      &:nth-child(6)
-        margin-right 0
 </style>

@@ -1,3 +1,4 @@
+require('es6-promise').polyfill()
 import Vue from 'vue'
 import Vuex from 'vuex'
 import mutations from './mutations'
@@ -8,13 +9,13 @@ Vue.use(Vuex)
 
 const state = {
   /**
-   * 用户信息
+   * 上下文
    */
-	userInfo: null,
+  egrandContext: null,
   /**
    * 登录状态
    */
-  login: true
+  login: false
 }
 
 export default new Vuex.Store({

@@ -1,185 +1,112 @@
 <template>
   <div class="home">
-    <section class="sort_container">
-      <div class="sort_item">
-        <div class="sort_item_container">
-          <div class="sort_item_border">
-            <span>筛选</span>
-            <span class="glyphicon glyphicon-chevron-down sort_icon"></span>
-          </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-4">
+          <section @click = "gotoAddress('/order')" class="guide_item">
+            <span class="glyphicon glyphicon-book icon_style"></span>
+            <div class="text">制度建设</div>
+          </section>
+        </div>
+        <div class="col-xs-4">
+          <section @click = "gotoAddress({path: '/todo'})" class="guide_item">
+            <span class="glyphicon glyphicon-list-alt icon_style"></span>
+            <div class="text">待办事项</div>
+          </section>
+        </div>
+        <div class="col-xs-4">
+          <section @click = "gotoAddress({path: '/issue'})" class="guide_item">
+            <span class="glyphicon glyphicon-list icon_style"></span>
+            <div class="text">公告通知</div>
+          </section>
         </div>
       </div>
-      <div class="sort_item">
-        <div class="sort_item_container">
-          <div>
-            <span>排序</span>
-            <span class="glyphicon glyphicon-chevron-down sort_icon"></span>
-          </div>
+      <div class="row">
+        <div class="col-xs-4">
+          <section @click = "gotoAddress({path: '/meeting'})" class="guide_item">
+            <span class="glyphicon glyphicon-th-large icon_style"></span>
+            <div class="text">我发起的议题</div>
+          </section>
+        </div>
+        <div class="col-xs-4">
+          <section @click = "gotoAddress('/order')" class="guide_item">
+            <span class="glyphicon glyphicon-th icon_style"></span>
+            <div class="text">决策执行清单</div>
+          </section>
+        </div>
+        <div class="col-xs-4">
+          <section @click = "gotoAddress({path: '/issue'})" class="guide_item">
+            <span class="glyphicon glyphicon-ok icon_style"></span>
+            <div class="text">已决策议题</div>
+          </section>
         </div>
       </div>
-    </section>
-    <section class="hy_list_container">
-      <div class="hylist_container">
-        <ul>
-          <li class="hy_li" @click="clickItem('1')">
-            <section>
-              <div class="hy_img text-center">
-                <span class="glyphicon glyphicon-file hy_file"></span>
-              </div>
-            </section>
-            <hgroup class="shop_right">
-              <header class="shop_detail_header">
-                <h4 class="shop_title ellipsis">关于蛇口街道纪工委与忆科公司交流会议</h4>
-              </header>
-              <h5 class="fee_distance">
-                <section class="fee">
-                  状态：未开始
-                  &nbsp;&nbsp;
-                  主持人：周志虎
-                </section>
-              </h5>
-              <h5 class="fee_distance">
-                <section class="fee">
-                  会议时间：2017-05-12 11:00:00~12:00:00
-                </section>
-              </h5>
-            </hgroup>
-          </li>
-          <li class="hy_li">
-            <section>
-              <div class="hy_img text-center">
-                <span class="glyphicon glyphicon-file hy_file active"></span>
-              </div>
-            </section>
-            <hgroup class="shop_right">
-              <header class="shop_detail_header">
-                <h4 class="shop_title ellipsis">新办公楼建设项目讨论</h4>
-              </header>
-              <h5 class="fee_distance">
-                <section class="fee">
-                  状态：未开始
-                  &nbsp;&nbsp;
-                  主持人：周志虎
-                </section>
-              </h5>
-              <h5 class="fee_distance">
-                <section class="fee">
-                  会议时间：2017-05-12 11:00:00~12:00:00
-                </section>
-              </h5>
-            </hgroup>
-          </li>
-          <li class="hy_li">
-            <section>
-              <div class="hy_img text-center">
-                <span class="glyphicon glyphicon-file hy_file active"></span>
-              </div>
-            </section>
-            <hgroup class="shop_right">
-              <header class="shop_detail_header">
-                <h4 class="shop_title ellipsis">关于2016年度优秀员工评比讨论</h4>
-              </header>
-              <h5 class="fee_distance">
-                <section class="fee">
-                  状态：未开始
-                  &nbsp;&nbsp;
-                  主持人：周志虎
-                </section>
-              </h5>
-              <h5 class="fee_distance">
-                <section class="fee">
-                  会议时间：2017-05-12 11:00:00~12:00:00
-                </section>
-              </h5>
-            </hgroup>
-          </li>
-          <li class="hy_li">
-            <section>
-              <div class="hy_img text-center">
-                <span class="glyphicon glyphicon-file hy_file"></span>
-              </div>
-            </section>
-            <hgroup class="shop_right">
-              <header class="shop_detail_header">
-                <h4 class="shop_title ellipsis">关于2017年度物资采购的讨论</h4>
-              </header>
-              <h5 class="fee_distance">
-                <section class="fee">
-                  状态：未开始
-                  &nbsp;&nbsp;
-                  主持人：周志虎
-                </section>
-              </h5>
-              <h5 class="fee_distance">
-                <section class="fee">
-                  会议时间：2017-05-12 11:00:00~12:00:00
-                </section>
-              </h5>
-            </hgroup>
-          </li>
-          <li class="hy_li">
-            <section>
-              <div class="hy_img text-center">
-                <span class="glyphicon glyphicon-file hy_file"></span>
-              </div>
-            </section>
-            <hgroup class="shop_right">
-              <header class="shop_detail_header">
-                <h4 class="shop_title ellipsis">关于落实党风廉政建设的若干要求</h4>
-              </header>
-              <h5 class="fee_distance">
-                <section class="fee">
-                  状态：未开始
-                  &nbsp;&nbsp;
-                  主持人：周志虎
-                </section>
-              </h5>
-              <h5 class="fee_distance">
-                <section class="fee">
-                  会议时间：2017-05-12 11:00:00~12:00:00
-                </section>
-              </h5>
-            </hgroup>
-          </li>
-          <li class="hy_li">
-            <section>
-              <div class="hy_img text-center">
-                <span class="glyphicon glyphicon-file hy_file"></span>
-              </div>
-            </section>
-            <hgroup class="shop_right">
-              <header class="shop_detail_header">
-                <h4 class="shop_title ellipsis">关于落实党风廉政建设的若干要求</h4>
-              </header>
-              <h5 class="fee_distance">
-                <section class="fee">
-                  状态：未开始
-                  &nbsp;&nbsp;
-                  主持人：周志虎
-                </section>
-              </h5>
-              <h5 class="fee_distance">
-                <section class="fee">
-                  会议时间：2017-05-12 11:00:00~12:00:00
-                </section>
-              </h5>
-            </hgroup>
-          </li>
-        </ul>
+      <div class="row">
+        <div class="col-xs-4">
+          <section @click = "gotoAddress({path: '/meeting'})" class="guide_item">
+            <span class="glyphicon glyphicon-lock icon_style"></span>
+            <div class="text">我参加的会议</div>
+          </section>
+        </div>
+        <div class="col-xs-4">
+          <section @click = "gotoAddress('/order')" class="guide_item">
+            <span class="glyphicon glyphicon-edit icon_style"></span>
+            <div class="text">待参加会议</div>
+          </section>
+        </div>
+        <div class="col-xs-4">
+          <section @click = "gotoAddress({path: '/issue'})" class="guide_item">
+            <span class="glyphicon glyphicon-check icon_style"></span>
+            <div class="text">待审阅会议</div>
+          </section>
+        </div>
       </div>
-    </section>
+      <hr/>
+      <div class="row">
+        <div class="col-xs-12">
+          <mt-navbar v-model="selected">
+            <mt-tab-item id="1"><span class="glyphicon glyphicon-list-alt icon"></span>待办事项</mt-tab-item>
+            <mt-tab-item id="2"><span class="glyphicon glyphicon-list-alt icon"></span>待参加会议</mt-tab-item>
+            <mt-tab-item id="3"><span class="glyphicon glyphicon-list-alt icon"></span>待审阅会议</mt-tab-item>
+          </mt-navbar>
+          <mt-tab-container v-model="selected">
+            <mt-tab-container-item id="1">
+              <mt-cell is-link v-for="issue in issues" :title="issue.name" />
+            </mt-tab-container-item>
+            <mt-tab-container-item id="2">
+            </mt-tab-container-item>
+            <mt-tab-container-item id="3">
+              <mt-cell v-for="n in 4" :title="'选项 ' + n" />
+            </mt-tab-container-item>
+          </mt-tab-container>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+  import {getPageByStatus} from '../../service/issue'
   export default {
+    data(){
+      return {
+        selected : '1',
+	      issues : []
+      }
+    },
     mounted(){
-      this.$root.$emit.apply(this.$root, ['change-header'].concat(["我的会议", false]));
-      this.$root.$emit.apply(this.$root, ['change-footer'].concat([true]));
+      this.$root.$emit.apply(this.$root, ['change-header'].concat(["重大事项决策管理平台", false]));
+      getPageByStatus('getDspYtPage').then(result => {
+        if(result.result)
+          this.issues = result.data;
+      });
     },
     methods: {
       clickItem: function (id) {
         this.$router.push('/meeting/' + id)
+      },
+      gotoAddress(path){
+        this.$router.push(path)
       }
     }
   }
@@ -187,106 +114,41 @@
 
 <style lang="stylus" scoped>
   .home
-    position absolute
-    top 3.5rem
-    bottom 2rem
     width 100%
-    .sort_container
-      background-color: #fff;
-      border-bottom: .025rem solid #f1f1f1;
-      position: fixed;
-      top: 1.9rem;
-      right: 0;
-      width: 100%;
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: flex;
-      z-index: 13;
-      box-sizing: border-box;
-      .sort_item
-        font-size: .55rem;
-        color: #444;
-        width: 50%;
-        height: 1.6rem;
-        text-align: center;
-        line-height: 1rem;
-        .sort_item_container
-          width: 100%;
-          height: 100%;
-          position: relative;
-          z-index: 14;
-          background-color: #fff;
-          box-sizing: border-box;
-          padding-top: 0.4rem;
-          .sort_item_border
-            height: 1rem;
-            border-right: .035rem solid #e4e4e4;
-            .sort_icon
-              height 0.5rem
-    .hy_list_container
-      .hylist_container
-        background-color: #fff;
-        padding-bottom: 2rem;
-        .hy_li
-          display: -webkit-box;
-          display: -ms-flexbox;
-          display: flex;
-          border-bottom: .025rem solid #f1f1f1;
-          padding: 0.5rem;
-          .hy_img
-            width: 100%;
-            height: 100%;
-            display: block;
-            margin-right: .4rem;
-            border-right: .025rem solid #f1f1f1;
-            padding-top: 1.5rem;
-            .hy_file
-              color: #ccc;
-              font-size: 1rem;
-            .active
-              color: #3190e8;
-          .shop_right
-            -webkit-box-flex: 1;
-            -ms-flex: auto;
-            flex: auto;
-            margin-left: 0.4rem;
-            .shop_detail_header
-              display: -webkit-box;
-              display: -ms-flexbox;
-              display: flex;
-              -webkit-box-pack: justify;
-              -ms-flex-pack: justify;
-              justify-content: space-between;
-              -webkit-box-align: center;
-              -ms-flex-align: center;
-              align-items: center;
-              .shop_title
-                width: 10rem;
-                color: #333;
-                padding-top: .01rem;
-                font: .65rem/.65rem PingFangSC-Regular;
-                font-weight: 700;
-              .ellipsis
-                overflow: hidden;
-                text-overflow: ellipsis;
-                white-space: nowrap;
-            .fee_distance
-              margin-top: 1rem;
-              display: -webkit-box;
-              display: -ms-flexbox;
-              display: flex;
-              -webkit-box-pack: justify;
-              -ms-flex-pack: justify;
-              justify-content: space-between;
-              font-size: .5rem;
-              color: #666;
-              .fee
-                font-size: .5rem;
-                color: #666;
-                span
-                  color: #999;
-                .segmentation
-                  color: #ccc;
-                .order_time
-                  color: #3190e8;
+    hr
+      margin-top .2rem
+      margin-bottom .5rem
+      border-top: .1rem solid #eee;
+    .icon
+      margin-right .2rem
+      font-size .5rem
+    .guide_item
+      height 3.5rem
+      -webkit-box-flex 1
+      -ms-flex 1
+      flex 1
+      display -webkit-box
+      display -ms-flexbox
+      display flex
+      text-align center
+      -webkit-box-orient vertical
+      -webkit-box-direction normal
+      -ms-flex-direction column
+      flex-direction column
+      -webkit-box-align center
+      -ms-flex-align center
+      align-items center
+      .icon_style
+        margin-bottom .2rem
+        margin-top .3rem
+        fill #ccc
+        font-size 1.2rem
+      span
+        margin-top .2rem
+        font-size .45rem
+        color #26a2ff
+      .text
+        margin-top .2rem
+        font-size .45rem
+        color #666
 </style>

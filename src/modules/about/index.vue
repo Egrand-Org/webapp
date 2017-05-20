@@ -6,11 +6,11 @@
     </div>
     <div class="body">
       <div class="item">
-        <div class="name">电话号码</div>
+        <div class="name">姓名</div>
         <div class="line">
           <i class="fa fa-phone"></i>
         </div>
-        <div class="value">13560107927</div>
+        <div class="value">{{egrandContext.name}}</div>
       </div>
       <div class="item">
         <div class="name">电子邮件</div>
@@ -41,9 +41,15 @@
 
 <script>
   import EgdFooter from 'footer'
+  import {mapState} from 'vuex'
   export default {
+    computed: {
+      ...mapState([
+        'egrandContext'
+      ]),
+    },
     mounted(){
-      this.$root.$emit.apply(this.$root, ['change-header'].concat(["我", false]));
+      this.$root.$emit.apply(this.$root, ['change-header'].concat(["我", true]));
     }
   }
 </script>

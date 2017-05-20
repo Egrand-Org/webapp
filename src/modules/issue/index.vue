@@ -94,7 +94,6 @@
     },
     mounted(){
       this.$root.$emit.apply(this.$root, ['change-header'].concat(["议题详情", true]));
-      this.$root.$emit.apply(this.$root, ['change-footer'].concat([false]));
     }
   }
 </script>

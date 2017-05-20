@@ -117,7 +117,6 @@
     },
     mounted(){
       this.$root.$emit.apply(this.$root, ['change-header'].concat(["会议详情", true]));
-      this.$root.$emit.apply(this.$root, ['change-footer'].concat([false]));
     },
     methods: {
       clickItem: function (id) {
@@ -129,11 +128,9 @@
 
 <style lang="stylus" scoped>
   .meeting
-    position absolute
-    top 2rem
-    bottom 2rem
+    padding-top: 2rem;
     width 100%
-    font-size .5rem
+    height 100%
     .no-radius
       border-radius 0px
       margin-bottom 0px

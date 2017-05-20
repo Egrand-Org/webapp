@@ -4,7 +4,6 @@
     <transition name="router-fade" mode="out-in">
       <router-view class="view"></router-view>
     </transition>
-    <EgdFooter v-if="showFooter"></EgdFooter>
   </div>
 </template>
 
@@ -27,9 +26,6 @@
       this.$on("change-header", (...params) => {
         [this.title, this.goBack] = params
       })
-      this.$on("change-footer", (...params) => {
-        [this.showFooter] = params
-      })
     }
   }
 </script>
@@ -41,5 +37,12 @@
   }
   .router-fade-enter, .router-fade-leave-active {
     opacity: 0;
+  }
+  .view {
+    position: relative;
+    padding-top: 2.5rem;
+    background-color: #fff;
+    height: 100%;
+    width: 100%;
   }
 </style>
