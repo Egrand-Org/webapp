@@ -97,8 +97,7 @@
     mounted(){
       this.$root.$emit.apply(this.$root, ['change-header'].concat(["重大事项决策管理平台", false]));
       getPageByStatus('getDspYtPage').then(result => {
-        if(result.result)
-          this.issues = result.data;
+          this.issues = result;
       });
     },
     methods: {

@@ -36,14 +36,7 @@
           return;
         }
         login(this.loginName, this.loginPassword).then(value => {
-          let {result, data} = value;
-          if(!result){
-            Toast(data);
-            return;
-          }
-          console.log(data);
-          console.log(data.name);
-          this.SET_EGRANDCONTEXT(data)
+          this.SET_EGRANDCONTEXT(value)
           this.$router.push('/Home')
         })
       }

@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { Toast } from 'mint-ui';
 
 /**
  * 账号密码登录
@@ -6,16 +7,12 @@ import axios from 'axios'
 
 var login = (username, password) => {
   return new Promise((resolve, reject) => {
-    axios.get("http://127.0.0.1:7001/login?loginName=" + username + "&loginPassword=" + password + "&isSavePwd=true", {
+    axios.get("/api/v1/user/login?loginName=" + username + "&loginPassword=" + password + "&isSavePwd=true", {
       withCredentials: true
-    }).then(function(response){
-      const {result, msg, egdContext} = response.data;
-      if(!result)
-        resolve({result, data: msg})
-      else
-        resolve({result, data: eval("(" + egdContext + ")")})
+    }).then(function(result){
+      resolve(result)
     }).catch(function(error){
-      resolve({result: false, data: error})
+      Toast(error);
     });
   })
 }
