@@ -8,7 +8,6 @@ import { Toast } from 'mint-ui';
 var getPage4My = () => {
   return new Promise((resolve, reject) => {
     axios.get("/api/v1/issues", {
-      withCredentials: true,
       params: {
         viewType: 'my'
       }
@@ -22,9 +21,8 @@ var getPage4My = () => {
 
 var getPageByStatus = (status) => {
   return new Promise((resolve, reject) => {
-    axios.get("/api/v1/issues/todo/" + status, {
-      withCredentials: true
-    }).then(function(result){
+    axios.get("/api/v1/issues/todo/" + status).then(function(result){
+      console.log(result);
       resolve(result)
     }).catch(function(error){
       Toast(error)

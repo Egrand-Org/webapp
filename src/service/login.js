@@ -7,9 +7,7 @@ import { Toast } from 'mint-ui';
 
 var login = (username, password) => {
   return new Promise((resolve, reject) => {
-    axios.get("/api/v1/user/login?loginName=" + username + "&loginPassword=" + password + "&isSavePwd=true", {
-      withCredentials: true
-    }).then(function(result){
+    axios.get("/api/v1/user/login?loginName=" + username + "&loginPassword=" + password + "&isSavePwd=true").then(function(result){
       resolve(result)
     }).catch(function(error){
       Toast(error);
