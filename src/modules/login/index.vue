@@ -36,8 +36,8 @@
           return;
         }
         login(this.loginName, this.loginPassword).then(value => {
-          this.SET_EGRANDCONTEXT(value)
           this.$router.push('/Home')
+          this.SET_EGRANDCONTEXT(value)
         })
       }
     }
