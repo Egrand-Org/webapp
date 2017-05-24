@@ -10,6 +10,7 @@
 <script>
   import EgdHeader from 'header'
   import EgdFooter from 'footer'
+  import {mapMutations} from 'vuex'
   export default {
     data(){
       return {
@@ -26,6 +27,12 @@
       this.$on("change-header", (...params) => {
         [this.title, this.goBack] = params
       })
+      this.INIT_EGRANDCONTEXT()
+    },
+    methods: {
+      ...mapMutations([
+        'INIT_EGRANDCONTEXT'
+      ])
     }
   }
 </script>
