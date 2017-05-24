@@ -1,6 +1,6 @@
-# jdzj-webapp
+# webapp
 
-> jdzj-webapp
+> webapp
 
 ## Build Setup
 
