@@ -3,19 +3,19 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-4">
-          <section @click = "gotoAddress('/order')" class="guide_item">
+          <section @click = "gotoAddress({path: '/order'})" class="guide_item">
             <span class="glyphicon glyphicon-book icon_style"></span>
             <div class="text">制度建设</div>
           </section>
         </div>
         <div class="col-xs-4">
-          <section @click = "gotoAddress({path: '/todo'})" class="guide_item">
+          <section @click = "gotoAddress({path: '/order'})" class="guide_item">
             <span class="glyphicon glyphicon-list-alt icon_style"></span>
             <div class="text">待办事项</div>
           </section>
         </div>
         <div class="col-xs-4">
-          <section @click = "gotoAddress({path: '/issue'})" class="guide_item">
+          <section @click = "gotoAddress({path: '/order'})" class="guide_item">
             <span class="glyphicon glyphicon-list icon_style"></span>
             <div class="text">公告通知</div>
           </section>
@@ -23,19 +23,19 @@
       </div>
       <div class="row">
         <div class="col-xs-4">
-          <section @click = "gotoAddress({path: '/meeting'})" class="guide_item">
+          <section @click = "gotoAddress({path: '/issue'})" class="guide_item">
             <span class="glyphicon glyphicon-th-large icon_style"></span>
             <div class="text">我发起的议题</div>
           </section>
         </div>
         <div class="col-xs-4">
-          <section @click = "gotoAddress('/order')" class="guide_item">
+          <section @click = "gotoAddress({path: '/issue/exe/todo/zxz'})" class="guide_item">
             <span class="glyphicon glyphicon-th icon_style"></span>
             <div class="text">决策执行清单</div>
           </section>
         </div>
         <div class="col-xs-4">
-          <section @click = "gotoAddress({path: '/issue'})" class="guide_item">
+          <section @click = "gotoAddress({path: '/issue/exe/todo/yjc'})" class="guide_item">
             <span class="glyphicon glyphicon-ok icon_style"></span>
             <div class="text">已决策议题</div>
           </section>
@@ -43,19 +43,19 @@
       </div>
       <div class="row">
         <div class="col-xs-4">
-          <section @click = "gotoAddress({path: '/meeting'})" class="guide_item">
+          <section @click = "gotoAddress({path: '/meeting/todo/my'})" class="guide_item">
             <span class="glyphicon glyphicon-lock icon_style"></span>
             <div class="text">我参加的会议</div>
           </section>
         </div>
         <div class="col-xs-4">
-          <section @click = "gotoAddress('/order')" class="guide_item">
+          <section @click = "gotoAddress({path: '/meeting/todo/attend'})" class="guide_item">
             <span class="glyphicon glyphicon-edit icon_style"></span>
             <div class="text">待参加会议</div>
           </section>
         </div>
         <div class="col-xs-4">
-          <section @click = "gotoAddress({path: '/issue'})" class="guide_item">
+          <section @click = "gotoAddress({path: '/meeting/todo/review'})" class="guide_item">
             <span class="glyphicon glyphicon-check icon_style"></span>
             <div class="text">待审阅会议</div>
           </section>
@@ -86,6 +86,7 @@
 </template>
 
 <script>
+  import { Toast } from 'mint-ui'
   import {getPageByStatus} from '../../service/issue'
   export default {
     data(){
@@ -105,7 +106,11 @@
         this.$router.push('/meeting/' + id)
       },
       gotoAddress(path){
-        this.$router.push(path)
+        if(path.path == '/order'){
+          Toast('建设中……');
+        }else {
+          this.$router.push(path)
+        }
       }
     }
   }

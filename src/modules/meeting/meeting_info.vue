@@ -3,34 +3,33 @@
     <div class="panel no-radius">
       <div class="panel-body body">
         <div class="title">
-          关于蛇口街道纪工委与忆科公司交流会议
-          &nbsp;&nbsp;
+          {{hy.subject}}
           <span class="glyphicon glyphicon-chevron-down" style="float:right"></span>
         </div>
         <div class="info">
           <div class="row">
             <div class="col-xs-8">
-              类型：党组委会
+              类型：<template v-if="!hy.hylx"></template><template v-else>{{hy.hylx.name}}</template>
             </div>
             <div class="col-xs-4">
-              主持人：洪婷婷
+              主持人：<template v-if="!hy.presenter"></template><template v-else>{{hy.presenter.name}}</template>
             </div>
           </div>
         </div>
         <div class="info">
           <div class="row">
             <div class="col-xs-12">
-              时间：2017-05-14 11:00:00~12:00:00
+              时间：{{hy.meetingTime}}
             </div>
           </div>
         </div>
         <div class="info">
             <div class="row">
               <div class="col-xs-8">
-                地点：信息港A栋305
+                地点：<template v-if="!hy.hydd"></template><template v-else>{{hy.hydd.name}}</template>
               </div>
               <div class="col-xs-4">
-                状态：进行中
+                状态：<template v-if="hy.status == 0">未开始</template><template v-else-if="hy.status == 1">会议中</template><template v-else>已结束</template>
               </div>
             </div>
         </div>
@@ -39,15 +38,15 @@
         <div class="container no-padding">
           <div class="row">
             <div class="col-xs-4 border-right text-center">
-              <div class="num">3</div>
+              <div class="num">{{hy.ycxry}}</div>
               <div>应出席人</div>
             </div>
             <div class="col-xs-4 border-right text-center">
-              <div class="num">2</div>
+              <div class="num">{{hy.scxry}}</div>
               <div>实际参与人</div>
             </div>
             <div class="col-xs-4 text-center">
-              <div class="num">1</div>
+              <div class="num">{{hy.lxry}}</div>
               <div>列席人</div>
             </div>
           </div>
@@ -56,7 +55,7 @@
       <ul class="list-group" style="border-radius:0px;box-shadow:none">
         <li class="list-group-item" style="border-right:0px;border-left:0px;">
             <span style="float:right;margin-left:10px;">
-              暂无
+              {{hy.hyjy}}
               <span class="glyphicon glyphicon-chevron-right" style="color:#ddd"></span>
             </span>
             会议纪要
@@ -109,14 +108,19 @@
 </template>
 
 <script>
+  import {openMeeting} from '../../service/meeting'
   export default {
     data(){
       return {
-        id : this.$router.currentRoute.params.id
+        id: this.$router.currentRoute.params.id,
+        hy: {}
       }
     },
     mounted(){
       this.$root.$emit.apply(this.$root, ['change-header'].concat(["会议详情", true]));
+      openMeeting(this.id).then(value => {
+        this.hy = value;
+      });
     },
     methods: {
       clickItem: function (id) {

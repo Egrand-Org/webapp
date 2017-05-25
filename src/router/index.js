@@ -8,6 +8,9 @@ const Login = resolve => require.ensure([], () => resolve(require('../modules/lo
 const MyMeeting = resolve => require.ensure([], () => resolve(require('../modules/meeting/my_meeting.vue')), 'meeting/my_meeting')
 const MeetingInfo = resolve => require.ensure([], () => resolve(require('../modules/meeting/meeting_info.vue')), 'meeting/meeting_info')
 const Issue = resolve => require.ensure([], () => resolve(require('../modules/issue/index.vue')), 'issue/index')
+const MyIssue = resolve => require.ensure([], () => resolve(require('../modules/issue/my_issue.vue')), 'issue/my_issue')
+const IssueExe = resolve => require.ensure([], () => resolve(require('../modules/issue/exe_issue.vue')), 'issue/exe_issue')
+const IssueExeInfo = resolve => require.ensure([], () => resolve(require('../modules/issue/exe_issue_info.vue')), 'issue/exe_issue_info')
 const About = resolve => require.ensure([], () => resolve(require('../modules/about/index.vue')), 'about/index')
 
 export default new Router({
@@ -31,7 +34,7 @@ export default new Router({
       component: About
     },
     {
-      path : '/Meeting',
+      path : '/Meeting/todo/:status',
       component: MyMeeting
     },
     {
@@ -41,6 +44,18 @@ export default new Router({
     {
       path : '/issue/:id(\\d+)',
       component: Issue
+    },
+    {
+      path : '/issue',
+      component: MyIssue
+    },
+    {
+      path : '/issue/exe/todo/:status',
+      component: IssueExe
+    },
+    {
+      path : '/issue/exe/:id(\\d+)',
+      component: IssueExeInfo
     },
     { path: '*', redirect: '/Home' }
   ]

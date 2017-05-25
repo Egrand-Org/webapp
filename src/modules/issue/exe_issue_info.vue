@@ -9,70 +9,36 @@
         <div class="info">
           <div class="row">
             <div class="col-xs-8">
-              发起部门：{{issue.authorOuName}}
+              执行人：{{issue.ytLeaderName}}
             </div>
             <div class="col-xs-4">
-              状态：{{issue.status}}
-            </div>
-          </div>
-        </div>
-        <div class="info">
-          <div class="row">
-            <div class="col-xs-12">
-              发起时间：{{issue.fileDate}}
+              状态：执行中
             </div>
           </div>
         </div>
       </div>
-      <ul class="list-group" style="border-radius:0px;box-shadow:none">
-        <li class="list-group-item" style="border-right:0px;border-left:0px;">
-            <span style="float:right;margin-left:10px;">
-              {{issue.summary}}
-              <span class="glyphicon glyphicon-chevron-right" style="color:#ddd"></span>
-            </span>
-            议题内容
-        </li>
-        <li class="list-group-item" style="border-right:0px;border-left:0px;">
-            <span style="float:right;margin-left:10px;">
-              {{issue.leaderLastStatus}}
-              <span class="glyphicon glyphicon-chevron-right" style="color:#ddd"></span>
-            </span>
-            一把手是否末位发言
-        </li>
-        <li class="list-group-item" style="border-right:0px;border-left:0px;">
-            <span style="float:right;margin-left:10px;">
-              {{issue.ytLeaderName}}
-              <span class="glyphicon glyphicon-chevron-right" style="color:#ddd"></span>
-            </span>
-            执行人
-        </li>
-      </ul>
     </div>
     <div class="panel" style="margin-top:5px;border-radius:0px;">
       <div class="panel-body" style="padding:0px;">
         <ul class="list-group">
-          <template v-for="(result, index) in issue.cxryResult">
+          <template v-for="(ytLog, index) in issue.ytLogs">
             <li class="list-group-item" v-if="index == 0" style="border-right:0px;border-left:0px;border-top: 0px;">
-              <span class="badge">{{result.option}}</span>
-              {{result.attender}}
+              <span class="badge">{{ytLog.fileDate}}</span>
+              {{ytLog.content}} {{ytLog.attachment}}
             </li>
             <li class="list-group-item" v-else="index > 0" style="border-right:0px;border-left:0px;">
-              <span class="badge">{{result.option}}</span>
-              {{result.attender}}
+              <span class="badge">{{ytLog.fileDate}}</span>
+              {{ytLog.content}} {{ytLog.attachment}}
             </li>
           </template>
         </ul>
       </div>
     </div>
-    <section class="confrim_order">
-      <p class="info">议题结论：通过</p>
-      <p class="confrim">投票</p>
-    </section>
   </div>
 </template>
 
 <script>
-  import {openYt} from '../../service/issue'
+  import {openYtLog} from '../../service/issue'
   export default {
     data(){
       return {
@@ -81,8 +47,8 @@
       }
     },
     mounted(){
-      this.$root.$emit.apply(this.$root, ['change-header'].concat(["议题详情", true]));
-      openYt(this.id).then(value => {
+      this.$root.$emit.apply(this.$root, ['change-header'].concat(["执行详情", true]));
+      openYtLog(this.id).then(value => {
         this.issue = value;
       });
     }

@@ -21,8 +21,7 @@
     <section class="hy_list_container">
       <div class="hylist_container">
         <ul>
-          <template v-for="hy in hyList">
-          <li class="hy_li" @click="clickItem(hy.id)">
+          <li class="hy_li" @click="clickItem(issue.id)" v-for="issue in issues">
             <section>
               <div class="hy_img text-center">
                 <span class="glyphicon glyphicon-file hy_file"></span>
@@ -30,23 +29,22 @@
             </section>
             <hgroup class="shop_right">
               <header class="shop_detail_header">
-                <h4 class="shop_title ellipsis">{{hy.subject}}</h4>
+                <h4 class="shop_title ellipsis">{{issue.name}}</h4>
               </header>
               <h5 class="fee_distance">
                 <section class="fee">
-                  状态：<template v-if="hy.status == 0">未开始</template><template v-else-if="hy.status == 1">会议中</template><template v-else>已结束</template>
+                  议题类型：{{issue.ytlx}}
                   &nbsp;&nbsp;
-                  主持人：{{hy.presenter.name}}
+                  发起人：{{issue.authorName}}
                 </section>
               </h5>
               <h5 class="fee_distance">
                 <section class="fee">
-                  会议时间：{{hy.meetingTime}}
+                  创建时间：{{issue.fileDate}}
                 </section>
               </h5>
             </hgroup>
           </li>
-          </template>
         </ul>
       </div>
     </section>
@@ -54,27 +52,22 @@
 </template>
 
 <script>
-  import { getPage4Meeting } from '../../service/meeting'
+  import {getPage4My} from '../../service/issue'
   export default {
-    data(){
+    data() {
       return {
-        status: this.$router.currentRoute.params.status,
-        hyList: []
+        issues : []
       }
     },
     mounted(){
-      if(this.status == "my"){
-        this.$root.$emit.apply(this.$root, ['change-header'].concat(["我参加的会议", true]));
-      } else if(this.status == "attend"){
-        this.$root.$emit.apply(this.$root, ['change-header'].concat(["待参加会议", true]));
-      }
-      getPage4Meeting(this.status).then(value => {
-        this.hyList = value;
+      this.$root.$emit.apply(this.$root, ['change-header'].concat(["我发起的议题", true]));
+      getPage4My().then(value => {
+        this.issues = value;
       });
     },
     methods: {
       clickItem: function (id) {
-        this.$router.push('/meeting/' + id)
+        this.$router.push('/issue/' + id)
       }
     }
   }
@@ -121,66 +114,66 @@
       .hylist_container
         background-color: #fff;
         padding-bottom: 2rem;
-        .hy_li
-          display: -webkit-box;
-          display: -ms-flexbox;
-          display: flex;
-          border-bottom: .025rem solid #f1f1f1;
-          padding: 0.5rem;
-          .hy_img
-            width: 100%;
-            height: 100%;
-            display: block;
-            margin-right: .4rem;
-            border-right: .025rem solid #f1f1f1;
-            padding-top: 1.5rem;
-            .hy_file
-              color: #ccc;
-              font-size: 1rem;
+      .hy_li
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        border-bottom: .025rem solid #f1f1f1;
+        padding: 0.5rem;
+        .hy_img
+          width: 100%;
+          height: 100%;
+          display: block;
+          margin-right: .4rem;
+          border-right: .025rem solid #f1f1f1;
+          padding-top: 1.5rem;
+          .hy_file
+            color: #ccc;
+            font-size: 1rem;
             .active
               color: #3190e8;
-          .shop_right
-            -webkit-box-flex: 1;
-            -ms-flex: auto;
-            flex: auto;
-            margin-left: 0.4rem;
-            .shop_detail_header
-              display: -webkit-box;
-              display: -ms-flexbox;
-              display: flex;
-              -webkit-box-pack: justify;
-              -ms-flex-pack: justify;
-              justify-content: space-between;
-              -webkit-box-align: center;
-              -ms-flex-align: center;
-              align-items: center;
-              .shop_title
-                width: 10rem;
-                color: #333;
-                padding-top: .01rem;
-                font: .65rem/.65rem PingFangSC-Regular;
-                font-weight: 700;
+        .shop_right
+          -webkit-box-flex: 1;
+          -ms-flex: auto;
+          flex: auto;
+          margin-left: 0.4rem;
+          .shop_detail_header
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            .shop_title
+              width: 10rem;
+              color: #333;
+              padding-top: .01rem;
+              font: .65rem/.65rem PingFangSC-Regular;
+              font-weight: 700;
               .ellipsis
                 overflow: hidden;
                 text-overflow: ellipsis;
                 white-space: nowrap;
-            .fee_distance
-              margin-top: 1rem;
-              display: -webkit-box;
-              display: -ms-flexbox;
-              display: flex;
-              -webkit-box-pack: justify;
-              -ms-flex-pack: justify;
-              justify-content: space-between;
+          .fee_distance
+            margin-top: 1rem;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            font-size: .5rem;
+            color: #666;
+            .fee
               font-size: .5rem;
               color: #666;
-              .fee
-                font-size: .5rem;
-                color: #666;
-                span
-                  color: #999;
-                .segmentation
-                  color: #ccc;
-                .order_time
-                  color: #3190e8;
+              span
+                color: #999;
+              .segmentation
+                color: #ccc;
+              .order_time
+                color: #3190e8;
 </style>

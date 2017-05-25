@@ -4,25 +4,13 @@ import { Toast } from 'mint-ui';
 /**
  * 获取我的议题信息
  */
-
 var getPage4My = () => {
   return new Promise((resolve, reject) => {
     axios.get("/api/v1/issues", {
       params: {
         viewType: 'my'
       }
-    }).then(function(response){
-      resolve({result: true, data: response.data})
-    }).catch(function(error){
-      resolve({result: false, data: error})
-    });
-  })
-}
-
-var getPageByStatus = (status) => {
-  return new Promise((resolve, reject) => {
-    axios.get("/api/v1/issues/todo/" + status).then(function(result){
-      console.log(result);
+    }).then(function(result){
       resolve(result)
     }).catch(function(error){
       Toast(error)
@@ -30,4 +18,59 @@ var getPageByStatus = (status) => {
   })
 }
 
-export {getPage4My, getPageByStatus}
+var getPageByStatus = (status) => {
+  return new Promise((resolve, reject) => {
+    axios.get("/api/v1/issues/todo/" + status).then(function(result){
+      resolve(result)
+    }).catch(function(error){
+      Toast(error)
+    });
+  })
+}
+
+/**
+ * 展示议题详情
+ * @param id
+ * @returns {Promise}
+ */
+let openYt = (id) => {
+  return new Promise((resolve, reject) => {
+    axios.get("/api/v1/issue/" + id).then(function(result){
+      resolve(result);
+    }).catch(function(error){
+      Toast(error);
+    })
+  })
+}
+
+/**
+ * 决策执行清单
+ * @param status {zxz: 执行中, yjc: 已决策}
+ * @returns {Promise}
+ */
+let getPageByStatusExe = (status) => {
+  return new Promise((resolve, reject) => {
+    axios.get("/api/v1/issue/exe/todo/" + status).then(function(result){
+      resolve(result);
+    }).catch(function(error){
+      Toast(error);
+    });
+  })
+}
+
+/**
+ * 展示执行详情
+ * @param id
+ * @returns {Promise}
+ */
+let openYtLog = (id) => {
+  return new Promise((resolve, reject) => {
+    axios.get("/api/v1/issue/exe/" + id).then(function(result){
+      resolve(result);
+    }).catch(function(error){
+      Toast(error);
+    })
+  })
+}
+
+export {getPage4My, getPageByStatus, openYt, getPageByStatusExe, openYtLog}
