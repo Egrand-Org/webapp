@@ -73,4 +73,14 @@ let openYtLog = (id) => {
   })
 }
 
-export {getPage4My, getPageByStatus, openYt, getPageByStatusExe, openYtLog}
+let getReport4User = () => {
+  return new Promise((resolve, reject) => {
+    axios.get("api/v1/user/report").then(function(result){
+      resolve(result);
+    }).catch(function(error){
+      Toast(error);
+    })
+  })
+}
+
+export {getPage4My, getPageByStatus, openYt, getPageByStatusExe, openYtLog, getReport4User}

@@ -11,6 +11,7 @@ const Issue = resolve => require.ensure([], () => resolve(require('../modules/is
 const MyIssue = resolve => require.ensure([], () => resolve(require('../modules/issue/my_issue.vue')), 'issue/my_issue')
 const IssueExe = resolve => require.ensure([], () => resolve(require('../modules/issue/exe_issue.vue')), 'issue/exe_issue')
 const IssueExeInfo = resolve => require.ensure([], () => resolve(require('../modules/issue/exe_issue_info.vue')), 'issue/exe_issue_info')
+const MyComment = resolve => require.ensure([], () => resolve(require('../modules/comment/index.vue')), 'comment/index')
 const About = resolve => require.ensure([], () => resolve(require('../modules/about/index.vue')), 'about/index')
 
 export default new Router({
@@ -56,6 +57,10 @@ export default new Router({
     {
       path : '/issue/exe/:id(\\d+)',
       component: IssueExeInfo
+    },
+    {
+      path : '/comment',
+      component: MyComment
     },
     { path: '*', redirect: '/Home' }
   ]
