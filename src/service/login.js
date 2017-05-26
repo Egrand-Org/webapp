@@ -1,5 +1,6 @@
 import axios from 'axios'
-import { Toast } from 'mint-ui';
+import { Toast } from 'mint-ui'
+import qs from 'qs'
 
 /**
  * 账号密码登录
@@ -7,7 +8,10 @@ import { Toast } from 'mint-ui';
 
 var login = (username, password) => {
   return new Promise((resolve, reject) => {
-    axios.get("/api/v1/user/login?loginName=" + username + "&loginPassword=" + password + "&isSavePwd=true").then(function(result){
+    axios.post("/api/v1/user/login", qs.stringify({
+      loginName: username,
+      loginPassword: password
+    })).then(function(result){
       resolve(result)
     }).catch(function(error){
       Toast(error);

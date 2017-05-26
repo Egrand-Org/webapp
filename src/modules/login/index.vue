@@ -1,6 +1,6 @@
 <template>
   <div class="login">
-    <form class="loginForm">
+    <form class="loginForm" enctype="multipart/form-data">
       <section class="input_container phone_number">
         <input type="text" placeholder="用户名" v-model="loginName">
       </section>
@@ -36,7 +36,6 @@
           return;
         }
         login(this.loginName, this.loginPassword).then(value => {
-          this.$router.push('/Home')
           this.SET_EGRANDCONTEXT(value)
         })
       }
