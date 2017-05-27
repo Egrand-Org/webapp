@@ -17,6 +17,6 @@ RUN npm install
 COPY . /app/
 RUN npm run build
 
-WORKDIR /app/dist
+CMD cp -r dist/* /usr/share/nginx/html/ && nginx -g 'daemon off;'
 docker build -t webapp .
 docker run -p 80:80 -e "NODE_ENV=production" webapp
