@@ -9,6 +9,7 @@ const MyMeeting = resolve => require.ensure([], () => resolve(require('../module
 const MeetingInfo = resolve => require.ensure([], () => resolve(require('../modules/meeting/meeting_info.vue')), 'meeting/meeting_info')
 const Issue = resolve => require.ensure([], () => resolve(require('../modules/issue/index.vue')), 'issue/index')
 const MyIssue = resolve => require.ensure([], () => resolve(require('../modules/issue/my_issue.vue')), 'issue/my_issue')
+const IssueAttend = resolve => require.ensure([], () => resolve(require('../modules/issue/attend_issue.vue')), 'issue/attend_issue')
 const IssueExe = resolve => require.ensure([], () => resolve(require('../modules/issue/exe_issue.vue')), 'issue/exe_issue')
 const IssueExeInfo = resolve => require.ensure([], () => resolve(require('../modules/issue/exe_issue_info.vue')), 'issue/exe_issue_info')
 const MyComment = resolve => require.ensure([], () => resolve(require('../modules/comment/index.vue')), 'comment/index')
@@ -57,6 +58,10 @@ export default new Router({
     {
       path : '/issue/exe/:id(\\d+)',
       component: IssueExeInfo
+    },
+    {
+      path : '/issue/attend',
+      component: IssueAttend
     },
     {
       path : '/comment',

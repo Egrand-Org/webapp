@@ -8,7 +8,7 @@
     </div>
     <div class="page-button">
       <div class="page-button-group">
-        <mt-button type="primary" size="large" @click="save">提交</mt-button>
+        <mt-button type="primary" size="large" @click="save" style="padding: .5rem; margin: .5rem; width: 94%; border-radius: .5rem;">提交</mt-button>
       </div>
     </div>
   </div>
