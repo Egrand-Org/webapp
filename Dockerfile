@@ -17,5 +17,6 @@ RUN npm install
 COPY . /app/
 RUN npm run build
 
-docker dist -t webapp .
+WORKDIR /app/dist
+docker build -t webapp .
 docker run -p 80:80 -e "NODE_ENV=production" webapp
