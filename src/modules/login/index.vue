@@ -1,7 +1,7 @@
 <template>
-  <div class="login">
-    <form class="loginForm" enctype="multipart/form-data">
-      <section class="input_container phone_number">
+  <div>
+    <form enctype="multipart/form-data">
+      <section class="input_container">
         <input type="text" placeholder="用户名" v-model="loginName">
       </section>
       <section class="input_container">
@@ -43,36 +43,26 @@
   }
 </script>
 <style lang="stylus" scoped>
-  .login
-    padding-top: 2rem;
-    width 100%
-    height 100%
-    font-size .5rem
-    .loginForm
-      background-color: #fff;
-      margin-top: .6rem;
-      .input_container
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-        justify-content: space-between;
-        padding: .6rem .8rem;
-        border-bottom: 1px solid #f1f1f1;
-        input
-          font-size: .7rem;
-          color: #666;
-          width: 100%;
-      .phone_number
-        padding: .3rem .8rem;
-    .login_container
-      margin: 0 .5rem 1rem;
+  .input_container
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: .6rem .8rem;
+    border-bottom: 1px solid #f1f1f1;
+    input
       font-size: .7rem;
-      color: #fff;
-      background-color: #26a2ff;
-      padding: .5rem 0;
-      border: 1px;
-      border-radius: .15rem;
-      text-align: center;
+      color: #666;
+      width: 100%;
+  .login_container
+    margin: 0 .5rem 1rem;
+    font-size: .7rem;
+    color: #fff;
+    background-color: #26a2ff;
+    padding: .5rem 0;
+    border: 1px;
+    border-radius: .15rem;
+    text-align: center;
 </style>

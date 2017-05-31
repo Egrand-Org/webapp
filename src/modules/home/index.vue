@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div>
     <div class="container">
       <div class="row">
         <div class="col-xs-4">
@@ -25,13 +25,13 @@
         <div class="col-xs-4">
           <section @click = "gotoAddress({path: '/issue'})" class="guide_item">
             <span class="glyphicon glyphicon-th-large icon_style"></span>
-            <div class="text">我发起的议题</div>
+            <div class="text">我的议题</div>
           </section>
         </div>
         <div class="col-xs-4">
           <section @click = "gotoAddress({path: '/issue/exe/todo/zxz'})" class="guide_item">
             <span class="glyphicon glyphicon-th icon_style"></span>
-            <div class="text">决策执行清单</div>
+            <div class="text">待上会议题</div>
           </section>
         </div>
         <div class="col-xs-4">
@@ -45,7 +45,7 @@
         <div class="col-xs-4">
           <section @click = "gotoAddress({path: '/meeting/todo/my'})" class="guide_item">
             <span class="glyphicon glyphicon-lock icon_style"></span>
-            <div class="text">我参加的会议</div>
+            <div class="text">我的会议</div>
           </section>
         </div>
         <div class="col-xs-4">
@@ -71,7 +71,11 @@
           </mt-navbar>
           <mt-tab-container v-model="selected">
             <mt-tab-container-item id="1">
-              <mt-cell is-link v-for="issue in issues" :title="issue.name" />
+              <div class="row" v-for="issue in issues">
+                <div class="col-xs-12">
+                  <mt-cell :to="'/issue/' + issue.id" :title="issue.name"  is-link />
+                </div>
+              </div>
             </mt-tab-container-item>
             <mt-tab-container-item id="2">
             </mt-tab-container-item>
@@ -117,42 +121,37 @@
 </script>
 
 <style lang="stylus" scoped>
-  .home
-    width 100%
-    hr
+  hr
+    margin-top .2rem
+    margin-bottom .5rem
+    border-top: .1rem solid #eee;
+  .icon
+    margin-right .2rem
+  .guide_item
+    height 3.5rem
+    -webkit-box-flex 1
+    -ms-flex 1
+    flex 1
+    display -webkit-box
+    display -ms-flexbox
+    display flex
+    text-align center
+    -webkit-box-orient vertical
+    -webkit-box-direction normal
+    -ms-flex-direction column
+    flex-direction column
+    -webkit-box-align center
+    -ms-flex-align center
+    align-items center
+    .icon_style
+      margin-bottom .2rem
+      margin-top .3rem
+      fill #ccc
+      font-size 1.2rem
+    span
       margin-top .2rem
-      margin-bottom .5rem
-      border-top: .1rem solid #eee;
-    .icon
-      margin-right .2rem
-      font-size .5rem
-    .guide_item
-      height 3.5rem
-      -webkit-box-flex 1
-      -ms-flex 1
-      flex 1
-      display -webkit-box
-      display -ms-flexbox
-      display flex
-      text-align center
-      -webkit-box-orient vertical
-      -webkit-box-direction normal
-      -ms-flex-direction column
-      flex-direction column
-      -webkit-box-align center
-      -ms-flex-align center
-      align-items center
-      .icon_style
-        margin-bottom .2rem
-        margin-top .3rem
-        fill #ccc
-        font-size 1.2rem
-      span
-        margin-top .2rem
-        font-size .45rem
-        color #26a2ff
-      .text
-        margin-top .2rem
-        font-size .45rem
-        color #666
+      color #26a2ff
+    .text
+      margin-top .2rem
+      color #666
 </style>
