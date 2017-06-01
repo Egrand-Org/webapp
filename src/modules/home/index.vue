@@ -78,9 +78,10 @@
               </div>
             </mt-tab-container-item>
             <mt-tab-container-item id="2">
+              <mt-cell is-link v-for="dcjHy in dcjHys" :to="'/meeting/'+dcjHy.id" :title="dcjHy.name" />
             </mt-tab-container-item>
             <mt-tab-container-item id="3">
-              <mt-cell v-for="n in 4" :title="'选项 ' + n" />
+              <mt-cell is-link v-for="dshHy in dshHys" :to="'/meeting/'+dshHy.id" :title="dshHy.name" />
             </mt-tab-container-item>
           </mt-tab-container>
         </div>
@@ -95,20 +96,22 @@
   export default {
     data(){
       return {
-        selected : '1',
-	      issues : []
+        selected: '1',
+	      issues: [],
+        dcjHys: [],
+        dshHys: []
       }
     },
+
     mounted(){
       this.$root.$emit.apply(this.$root, ['change-header'].concat(["重大事项决策管理平台", false]));
       getPageByStatus('getDspYtPage').then(result => {
           this.issues = result;
       });
     },
+
     methods: {
-      clickItem: function (id) {
-        this.$router.push('/meeting/' + id)
-      },
+
       gotoAddress(path){
         if(path.path == '/order'){
           Toast('建设中……');
@@ -116,7 +119,27 @@
           this.$router.push(path)
         }
       }
+
+    },
+
+    watch: {
+      selected: function (val, oldVal) {
+        if(val == 2){
+          getPageByStatus('getDcjHyPage').then(result => {
+            this.dcjHys = result;
+          });
+        } else if(val == 3) {
+          getPageByStatus('getDsyHyPage').then(result => {
+            this.dshHys = result;
+          });
+        } else {
+          getPageByStatus('getDspYtPage').then(result => {
+            this.issues = result;
+          });
+        }
+      }
     }
+
   }
 </script>
 

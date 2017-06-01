@@ -45,7 +45,7 @@
         </li>
       </ul>
     </div>
-    <div class="panel" style="margin-top:5px;border-radius:0px;">
+    <div class="panel" style="margin-top:5px;border-radius:0px;" v-if="issue.cxryResult && issue.cxryResult.size > 0">
       <div class="panel-body" style="padding:0px;">
         <ul class="list-group">
           <template v-for="(result, index) in issue.cxryResult">
@@ -73,12 +73,20 @@
         issue: {}
       }
     },
+
     mounted(){
       this.$root.$emit.apply(this.$root, ['change-header'].concat(["议题详情", true]));
-      openYt(this.id).then(value => {
-        this.issue = value;
+      openYt(this.id).then(result => {
+        this.issue = result;
       });
+    },
+
+    methods: {
+      vote: function() {
+        this.$router.push('/vote/' + this.id)
+      }
     }
+
   }
 </script>
 

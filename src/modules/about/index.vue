@@ -51,7 +51,7 @@
       </div>
       <div class="row">
         <div class="col-xs-12">
-          <mt-cell title="待安排的议题" to="" is-link>
+          <mt-cell title="待安排的议题" to="/issue/attend" is-link>
             <span slot="icon" class="glyphicon glyphicon-calendar" style="color:#000; vertical-align: middle;"></span>
             {{report.yts_arrange ? report.yts_arrange : 0}}
           </mt-cell>
