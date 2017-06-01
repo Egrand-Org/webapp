@@ -47,7 +47,7 @@
   }
   .view {
     position: relative;
-    padding-top: 2.5rem;
+    padding-top: 2rem;
     background-color: #fff;
     height: 100%;
     width: 100%;

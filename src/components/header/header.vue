@@ -33,7 +33,7 @@
     left 0
     top 0
     width 100%
-    height 1.95rem
+    height 2rem
     color #fff
     .head_goback
       height: 1rem;
