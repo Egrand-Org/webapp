@@ -35,7 +35,7 @@ var getPageByStatus = (status) => {
  */
 let openYt = (id) => {
   return new Promise((resolve, reject) => {
-    axios.get("/api/v1/issue/" + id).then(function(result){
+    axios.get("/api/v1/issues/" + id).then(function(result){
       resolve(result);
     }).catch(function(error){
       Toast(error);
@@ -50,7 +50,7 @@ let openYt = (id) => {
  */
 let getPageByStatusExe = (status) => {
   return new Promise((resolve, reject) => {
-    axios.get("/api/v1/issue/exe/todo/" + status).then(function(result){
+    axios.get("/api/v1/issues/exe/todo/" + status).then(function(result){
       resolve(result);
     }).catch(function(error){
       Toast(error);
@@ -65,7 +65,7 @@ let getPageByStatusExe = (status) => {
  */
 let openYtLog = (id) => {
   return new Promise((resolve, reject) => {
-    axios.get("/api/v1/issue/exe/" + id).then(function(result){
+    axios.get("/api/v1/issues/exe/" + id).then(function(result){
       resolve(result);
     }).catch(function(error){
       Toast(error);
