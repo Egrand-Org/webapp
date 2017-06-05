@@ -73,6 +73,10 @@
 </script>
 <style lang="stylus" scoped>
   .login
+    background-image url(/static/img/bg.f241f12.jpeg)
+    background-repeat no-repeat
+    background-size cover
+    background-size 100% 100%
     .login-panel
       margin: 0 auto;
       width: 90%;
@@ -86,8 +90,12 @@
         margin-top .5rem;
       section
         margin-top .5rem
+        background-color #fff
       .password_container
         color #666
+        background-color transparent
+        .mint-cell
+          background-color transparent
         .mint-cell-wrapper
           padding 0px
       .input_container
