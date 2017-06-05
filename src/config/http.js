@@ -5,7 +5,7 @@ import {CLEAR_EGRANDCONTEXT} from '../store/mutation-types'
 import {getToken} from '../config/mUtils'
 
 axios.defaults.timeout = 5000
-axios.defaults.baseURL = 'http://10.1.10.16:7001'
+axios.defaults.baseURL = 'http://localhost:7001'
 axios.defaults.withCredentials = true
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
 
