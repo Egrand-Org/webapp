@@ -4,11 +4,11 @@
           <span class="glyphicon glyphicon-list-alt icon_style" :class="$route.path.indexOf('home') !== -1 ? 'active' : ''"></span>
           <span>我的会议</span>
         </section>
-        <section @click = "gotoAddress({path: '/meeting'})" class="guide_item">
-          <span class="glyphicon glyphicon-list icon_style" :class="$route.path.indexOf('meeting') !== -1 ? 'active' : ''"></span>
-          <span>参加会议</span>
+        <section @click = "gotoAddress({path: '/issue'})" class="guide_item">
+          <span class="glyphicon glyphicon-list icon_style" :class="$route.path.indexOf('issue') !== -1 ? 'active' : ''"></span>
+          <span>我的议题</span>
         </section>
-        <section @click = "gotoAddress('/order')" class="guide_item">
+        <section @click = "gotoAddress('/issue')" class="guide_item">
           <span class="glyphicon glyphicon-ok icon_style" :class="$route.path.indexOf('order') !== -1 ? 'active' : ''"></span>
           <span>决策执行</span>
         </section>
