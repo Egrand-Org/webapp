@@ -34,7 +34,6 @@
     },
     mounted(){
       this.$on("change-header", (...params) => {
-        console.log(params);
         [this.title, this.goBack, this.showHeader] = params
       })
     }
