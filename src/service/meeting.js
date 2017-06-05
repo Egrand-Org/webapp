@@ -4,11 +4,11 @@ import { Toast } from 'mint-ui'
 /**
  * 获取我的会议信息
  */
-let getPage4Meeting = (status) => {
+let getPage4Meeting = (status, pageNo) => {
   return new Promise((resolve, reject) => {
-    axios.get("/api/v1/hy/todo/" + status, {
+    axios.get("/api/v1/meeting/todo/" + status, {
       params: {
-        viewType: 'my'
+        pageNo: pageNo
       }
     }).then(function(result){
       resolve(result);
@@ -25,7 +25,7 @@ let getPage4Meeting = (status) => {
  */
 let openMeeting = (id) => {
   return new Promise((resolve, reject) => {
-    axios.get("/api/v1/hy/" + id).then(function(result){
+    axios.get("/api/v1/meeting/" + id).then(function(result){
       resolve(result);
     }).catch(function(error){
       Toast(error);
