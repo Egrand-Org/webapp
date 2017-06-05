@@ -74,6 +74,7 @@
 <script>
   import {mapState} from 'vuex'
   import {getReport4User} from '../../service/issue'
+  import emitter from '../../mixins/emitter'
   export default {
     data() {
       return {
@@ -81,13 +82,14 @@
         userinfo: {}
       }
     },
+    mixins : [emitter],
     computed: {
       ...mapState([
         'egrandContext'
       ]),
     },
     mounted(){
-      this.$root.$emit.apply(this.$root, ['change-header'].concat(["我", true]));
+      this.dispatch("egd-home", "change-header", "我", false, true)
       getReport4User().then(result => {
         this.report = result;
       });

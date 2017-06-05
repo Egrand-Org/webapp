@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <EgdHeader :headTitle="title" :goBack="goBack"></EgdHeader>
+    <EgdHeader :headTitle="title" :goBack="goBack" :showHeader="showHeader">
+    </EgdHeader>
     <transition name="router-fade" mode="out-in">
       <router-view class="view"></router-view>
     </transition>
@@ -11,26 +12,31 @@
   import EgdHeader from 'header'
   import {mapMutations} from 'vuex'
   export default {
+    name: 'egd-home',
+    componentName: 'egd-home',
     data(){
       return {
         title : '重大事项决策管理平台',
         goBack : false,
-        showFooter : true
+        showHeader : false
       }
+    },
+    mounted(){
+      this.INIT_EGRANDCONTEXT()
     },
     components: {
       EgdHeader
-    },
-    mounted(){
-      this.$on("change-header", (...params) => {
-        [this.title, this.goBack] = params
-      })
-      this.INIT_EGRANDCONTEXT()
     },
     methods: {
       ...mapMutations([
         'INIT_EGRANDCONTEXT'
       ])
+    },
+    mounted(){
+      this.$on("change-header", (...params) => {
+        console.log(params);
+        [this.title, this.goBack, this.showHeader] = params
+      })
     }
   }
 </script>
@@ -52,7 +58,6 @@
   }
   .view {
     position: relative;
-    padding-top: 2rem;
     height: 100%;
     width: 100%;
   }

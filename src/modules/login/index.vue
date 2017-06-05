@@ -50,7 +50,7 @@
       }
     },
     mounted(){
-      this.$root.$emit.apply(this.$root, ['change-header'].concat(["重大事项决策管理平台", false]));
+      this.$root.$emit.apply(this.$root, ['change-header'].concat(["重大事项决策管理平台", false, false]));
     },
     methods: {
       ...mapMutations([
@@ -73,21 +73,19 @@
 </script>
 <style lang="stylus" scoped>
   .login
-    background-image url(/static/img/bg.f241f12.jpeg)
+    background-image url(../../assets/img/login/bg.jpeg)
     background-repeat no-repeat
     background-size cover
     background-size 100% 100%
     .login-panel
       margin: 0 auto;
       width: 90%;
+      padding-top: 3rem;
       .logo
-        margin-top 1rem
         margin-bottom 1rem
         .logo-text
           color #666
           font-size .5rem
-      div
-        margin-top .5rem;
       section
         margin-top .5rem
         background-color #fff

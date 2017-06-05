@@ -1,113 +1,58 @@
 <template>
-  <div>
-    <div class="panel no-radius">
-      <div class="panel-body body">
-        <div class="title">
-          {{issue.name}}
+  <div class="home">
+    <div class="header">
+      <div class="row item">
+        <div class="col-xs-3" :class="$route.path.indexOf('issue/ysh') !== -1 ? 'active' : ''" @click="$router.push('/issue/ysh')">
+          已上会
         </div>
-        <small>
-          <div class="row">
-            <div class="col-xs-4">
-              发起人：{{issue.authorName}}
-            </div>
-            <div class="col-xs-4">
-              发起部门：{{issue.authorOuName}}
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-xs-12">
-              发起时间：{{issue.fileDate}}
-            </div>
-          </div>
-        </small>
-      </div>
-      <ul class="list-group" style="border-radius:0px;box-shadow:none">
-        <li class="list-group-item" style="border-right:0px;border-left:0px;">
-            <span style="float:right;margin-left:10px;">
-              {{issue.summary}}
-              <span class="glyphicon glyphicon-chevron-right" style="color:#ddd"></span>
-            </span>
-            议题内容
-        </li>
-        <li class="list-group-item" style="border-right:0px;border-left:0px;">
-            <span style="float:right;margin-left:10px;">
-              {{issue.leaderLastStatus}}
-              <span class="glyphicon glyphicon-chevron-right" style="color:#ddd"></span>
-            </span>
-            一把手是否末位发言
-        </li>
-        <li class="list-group-item" style="border-right:0px;border-left:0px;">
-            <span style="float:right;margin-left:10px;">
-              {{issue.ytLeaderName}}
-              <span class="glyphicon glyphicon-chevron-right" style="color:#ddd"></span>
-            </span>
-            执行人
-        </li>
-      </ul>
-    </div>
-    <div class="panel" style="margin-top:5px;border-radius:0px;" v-if="issue.cxryResult && issue.cxryResult.size > 0">
-      <div class="panel-body" style="padding:0px;">
-        <ul class="list-group">
-          <template v-for="(result, index) in issue.cxryResult">
-            <li class="list-group-item" v-if="index == 0" style="border-right:0px;border-left:0px;border-top: 0px;">
-              <span class="badge">{{result.option}}</span>
-              {{result.attender}}
-            </li>
-            <li class="list-group-item" v-else="index > 0" style="border-right:0px;border-left:0px;">
-              <span class="badge">{{result.option}}</span>
-              {{result.attender}}
-            </li>
-          </template>
-        </ul>
+        <div class="col-xs-3" :class="$route.path.indexOf('issue/dsh') !== -1 ? 'active' : ''" @click="$router.push('/issue/dsh')">
+          待上会
+        </div>
+        <div class="col-xs-3" :class="$route.path.indexOf('issue/spz') !== -1 ? 'active' : ''" @click="$router.push('/issue/spz')">
+          审批中
+        </div>
+        <div class="col-xs-3" :class="$route.path.indexOf('issue/zxz') !== -1 ? 'active' : ''" @click="$router.push('/issue/zxz')">
+          执行中
+        </div>
       </div>
     </div>
+    <section class="list_container">
+      <transition name="router-fade" mode="out-in">
+        <router-view></router-view>
+      </transition>
+    </section>
   </div>
 </template>
 
 <script>
-  import {openYt} from '../../service/issue'
+  import {getPage4My} from '../../service/issue'
+  import {relativeTime} from '../../config/mUtils'
+  import emitter from '../../mixins/emitter'
   export default {
-    data(){
-      return {
-        id: this.$router.currentRoute.params.id,
-        issue: {}
-      }
-    },
-
+    mixins : [emitter],
     mounted(){
-      this.$root.$emit.apply(this.$root, ['change-header'].concat(["议题详情", true]));
-      openYt(this.id).then(result => {
-        this.issue = result;
-      });
-    },
-
-    methods: {
-      vote: function() {
-        this.$router.push('/vote/' + this.id)
-      }
+      this.dispatch("egd-home", "change-header", "我的议题", false, true)
     }
-
   }
 </script>
 
 <style lang="stylus" scoped>
-  .no-radius
-    border-radius 0px
-    margin-bottom 0px
-  .body
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    .title
-      font-weight 700
-    .info
-      margin-top: 1rem;
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: flex;
-      -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-      justify-content: space-between;
-      font-size: .5rem;
-      color: #666;
+  .home
+    .header
+      position: fixed;
+      z-index: 1;
+      top: 2rem;
+      height: 2rem;
+      line-height: 2rem;
+      width: 100%;
+      background-color: #fff;
+      border-bottom: .1rem solid #f1f1f1;
+      .item
+        margin: 0px;
+        width: 100%;
+        .active
+          border-bottom: .1rem solid #26a2ff;
+    .list_container
+      margin-top: 2rem;
+      margin-bottom: 2rem;
 </style>

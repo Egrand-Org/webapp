@@ -5,13 +5,14 @@ Vue.use(Router)
 
 const Home = resolve => require.ensure([], () => resolve(require('../modules/home/index.vue')), 'home/index')
 const Login = resolve => require.ensure([], () => resolve(require('../modules/login/index.vue')), 'login/index')
-const MyMeeting = resolve => require.ensure([], () => resolve(require('../modules/meeting/my_meeting.vue')), 'meeting/my_meeting')
+const Meeting = resolve => require.ensure([], () => resolve(require('../modules/meeting/index.vue')), 'meeting/index')
 const MeetingInfo = resolve => require.ensure([], () => resolve(require('../modules/meeting/meeting_info.vue')), 'meeting/meeting_info')
+const IssueInfo = resolve => require.ensure([], () => resolve(require('../modules/issue/issue_info.vue')), 'issue/issue_info')
 const Issue = resolve => require.ensure([], () => resolve(require('../modules/issue/index.vue')), 'issue/index')
-const MyIssue = resolve => require.ensure([], () => resolve(require('../modules/issue/my_issue.vue')), 'issue/my_issue')
-const IssueAttend = resolve => require.ensure([], () => resolve(require('../modules/issue/attend_issue.vue')), 'issue/attend_issue')
-const IssueExe = resolve => require.ensure([], () => resolve(require('../modules/issue/exe_issue.vue')), 'issue/exe_issue')
-const IssueExeInfo = resolve => require.ensure([], () => resolve(require('../modules/issue/exe_issue_info.vue')), 'issue/exe_issue_info')
+const Issue4ysh = resolve => require.ensure([], () => resolve(require('../modules/issue/issue4ysh.vue')), 'issue/issue4ysh')
+const Issue4dsh = resolve => require.ensure([], () => resolve(require('../modules/issue/issue4dsh.vue')), 'issue/issue4dsh')
+const Issue4spz = resolve => require.ensure([], () => resolve(require('../modules/issue/issue4spz.vue')), 'issue/issue4spz')
+const Issue4zxz = resolve => require.ensure([], () => resolve(require('../modules/issue/issue4zxz.vue')), 'issue/issue4zxz')
 const MyComment = resolve => require.ensure([], () => resolve(require('../modules/comment/index.vue')), 'comment/index')
 const About = resolve => require.ensure([], () => resolve(require('../modules/about/index.vue')), 'about/index')
 
@@ -28,45 +29,54 @@ export default new Router({
       component: Login
     },
     {
-      path: '/Home',
-      component: Home
-    },
-    {
-      path: '/About',
-      component: About
-    },
-    {
-      path : '/Meeting/todo/:status',
-      component: MyMeeting
-    },
-    {
-      path : '/meeting/:id(\\d+)',
-      component: MeetingInfo
-    },
-    {
       path : '/issue/:id(\\d+)',
-      component: Issue
+      component: IssueInfo
     },
     {
-      path : '/issue',
-      component: MyIssue
-    },
-    {
-      path : '/issue/exe/todo/:status',
-      component: IssueExe
-    },
-    {
-      path : '/issue/exe/:id(\\d+)',
-      component: IssueExeInfo
-    },
-    {
-      path : '/issue/attend',
-      component: IssueAttend
-    },
-    {
-      path : '/comment',
-      component: MyComment
-    },
-    { path: '*', redirect: '/Home' }
+      path: '/Home',
+      component: Home,
+      children: [
+        { path : '', redirect: '/issue'},
+        {
+          path : '/issue',
+          component: Issue,
+          children: [
+            {path: '', redirect: '/issue/ysh'},
+            {
+              path: '/issue/ysh',
+              component: Issue4ysh
+            },
+            {
+              path: '/issue/dsh',
+              component: Issue4dsh
+            },
+            {
+              path: '/issue/spz',
+              component: Issue4spz
+            },
+            {
+              path: '/issue/zxz',
+              component: Issue4zxz
+            }
+          ]
+        },
+        {
+          path : '/Meeting/todo/:status',
+          component: Meeting
+        },
+        {
+          path : '/meeting/:id(\\d+)',
+          component: MeetingInfo
+        },
+        {
+          path: '/About',
+          component: About
+        },
+        {
+          path : '/comment',
+          component: MyComment
+        }
+      ]
+    }
   ]
 })

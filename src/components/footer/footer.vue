@@ -1,12 +1,12 @@
 <template>
     <section id='foot_guide'>
-        <section @click = "gotoAddress({path: '/home'})" class="guide_item">
-          <span class="glyphicon glyphicon-list-alt icon_style" :class="$route.path.indexOf('home') !== -1 ? 'active' : ''"></span>
-          <span>我的会议</span>
-        </section>
         <section @click = "gotoAddress({path: '/issue'})" class="guide_item">
           <span class="glyphicon glyphicon-list icon_style" :class="$route.path.indexOf('issue') !== -1 ? 'active' : ''"></span>
           <span>我的议题</span>
+        </section>
+        <section @click = "gotoAddress({path: '/meeting/todo/getDcjHyPage'})" class="guide_item">
+          <span class="glyphicon glyphicon-list-alt icon_style" :class="$route.path.indexOf('meeting') !== -1 ? 'active' : ''"></span>
+          <span>我的会议</span>
         </section>
         <section @click = "gotoAddress('/issue')" class="guide_item">
           <span class="glyphicon glyphicon-ok icon_style" :class="$route.path.indexOf('order') !== -1 ? 'active' : ''"></span>
@@ -45,7 +45,7 @@
     right 0
     bottom 0
     width 100%
-    height 2.5rem
+    height 2rem
     display -webkit-box
     display -ms-flexbox
     display flex

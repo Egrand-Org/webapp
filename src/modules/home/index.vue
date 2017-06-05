@@ -1,180 +1,39 @@
 <template>
-  <div>
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-4">
-          <section @click = "gotoAddress({path: '/order'})" class="guide_item">
-            <span class="glyphicon glyphicon-book icon_style"></span>
-            <div class="text">制度建设</div>
-          </section>
-        </div>
-        <div class="col-xs-4">
-          <section @click = "gotoAddress({path: '/order'})" class="guide_item">
-            <span class="glyphicon glyphicon-list-alt icon_style"></span>
-            <div class="text">待办事项</div>
-          </section>
-        </div>
-        <div class="col-xs-4">
-          <section @click = "gotoAddress({path: '/order'})" class="guide_item">
-            <span class="glyphicon glyphicon-list icon_style"></span>
-            <div class="text">公告通知</div>
-          </section>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-4">
-          <section @click = "gotoAddress({path: '/issue'})" class="guide_item">
-            <span class="glyphicon glyphicon-th-large icon_style"></span>
-            <div class="text">我的议题</div>
-          </section>
-        </div>
-        <div class="col-xs-4">
-          <section @click = "gotoAddress({path: '/issue/exe/todo/zxz'})" class="guide_item">
-            <span class="glyphicon glyphicon-th icon_style"></span>
-            <div class="text">待上会议题</div>
-          </section>
-        </div>
-        <div class="col-xs-4">
-          <section @click = "gotoAddress({path: '/issue/exe/todo/yjc'})" class="guide_item">
-            <span class="glyphicon glyphicon-ok icon_style"></span>
-            <div class="text">已决策议题</div>
-          </section>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-4">
-          <section @click = "gotoAddress({path: '/meeting/todo/my'})" class="guide_item">
-            <span class="glyphicon glyphicon-lock icon_style"></span>
-            <div class="text">我的会议</div>
-          </section>
-        </div>
-        <div class="col-xs-4">
-          <section @click = "gotoAddress({path: '/meeting/todo/attend'})" class="guide_item">
-            <span class="glyphicon glyphicon-edit icon_style"></span>
-            <div class="text">待参加会议</div>
-          </section>
-        </div>
-        <div class="col-xs-4">
-          <section @click = "gotoAddress({path: '/meeting/todo/review'})" class="guide_item">
-            <span class="glyphicon glyphicon-check icon_style"></span>
-            <div class="text">待审阅会议</div>
-          </section>
-        </div>
-      </div>
-      <hr/>
-      <div class="row">
-        <div class="col-xs-12">
-          <mt-navbar v-model="selected">
-            <mt-tab-item id="1"><span class="glyphicon glyphicon-list-alt icon"></span>待办事项</mt-tab-item>
-            <mt-tab-item id="2"><span class="glyphicon glyphicon-list-alt icon"></span>待参加会议</mt-tab-item>
-            <mt-tab-item id="3"><span class="glyphicon glyphicon-list-alt icon"></span>待审阅会议</mt-tab-item>
-          </mt-navbar>
-          <mt-tab-container v-model="selected">
-            <mt-tab-container-item id="1">
-              <div class="row" v-for="issue in issues">
-                <div class="col-xs-12">
-                  <mt-cell :to="'/issue/' + issue.id" :title="issue.name"  is-link />
-                </div>
-              </div>
-            </mt-tab-container-item>
-            <mt-tab-container-item id="2">
-              <mt-cell is-link v-for="dcjHy in dcjHys" :to="'/meeting/'+dcjHy.id" :title="dcjHy.name" />
-            </mt-tab-container-item>
-            <mt-tab-container-item id="3">
-              <mt-cell is-link v-for="dshHy in dshHys" :to="'/meeting/'+dshHy.id" :title="dshHy.name" />
-            </mt-tab-container-item>
-          </mt-tab-container>
-        </div>
-      </div>
-    </div>
+  <div id="app">
+    <transition name="router-fade" mode="out-in">
+      <router-view class="egrand"></router-view>
+    </transition>
+    <EgdFooter></EgdFooter>
   </div>
 </template>
 
 <script>
-  import { Toast } from 'mint-ui'
-  import {getPageByStatus} from '../../service/issue'
+  import EgdFooter from 'footer'
   export default {
-    data(){
-      return {
-        selected: '1',
-	      issues: [],
-        dcjHys: [],
-        dshHys: []
-      }
-    },
-
-    mounted(){
-      this.$root.$emit.apply(this.$root, ['change-header'].concat(["重大事项决策管理平台", false]));
-      getPageByStatus('getDspYtPage').then(result => {
-          this.issues = result;
-      });
-    },
-
-    methods: {
-
-      gotoAddress(path){
-        if(path.path == '/order'){
-          Toast('建设中……');
-        }else {
-          this.$router.push(path)
-        }
-      }
-
-    },
-
-    watch: {
-      selected: function (val, oldVal) {
-        if(val == 2){
-          getPageByStatus('getDcjHyPage').then(result => {
-            this.dcjHys = result;
-          });
-        } else if(val == 3) {
-          getPageByStatus('getDsyHyPage').then(result => {
-            this.dshHys = result;
-          });
-        } else {
-          getPageByStatus('getDspYtPage').then(result => {
-            this.issues = result;
-          });
-        }
-      }
+    components: {
+      EgdFooter
     }
-
   }
 </script>
 
-<style lang="stylus" scoped>
-  hr
-    margin-top .2rem
-    margin-bottom .5rem
-    border-top: .1rem solid #eee;
-  .icon
-    margin-right .2rem
-  .guide_item
-    height 3.5rem
-    -webkit-box-flex 1
-    -ms-flex 1
-    flex 1
-    display -webkit-box
-    display -ms-flexbox
-    display flex
-    text-align center
-    -webkit-box-orient vertical
-    -webkit-box-direction normal
-    -ms-flex-direction column
-    flex-direction column
-    -webkit-box-align center
-    -ms-flex-align center
-    align-items center
-    .icon_style
-      margin-bottom .2rem
-      margin-top .3rem
-      fill #ccc
-      font-size 1.2rem
-    span
-      margin-top .2rem
-      color #26a2ff
-    .text
-      margin-top .2rem
-      color #666
+<style lang="scss">
+  #app {
+    height: 100%;
+  }
+  .router-fade-enter-active, .router-fade-leave-active {
+    transition: opacity .1s;
+    -webkit-transform: translate(-50px, 0);
+    transform: translate(50px, 0);
+  }
+  .router-fade-enter, .router-fade-leave-active {
+    opacity: 0;
+    -webkit-transform: translate(50px, 0);
+    transform: translate(-50px, 0);
+  }
+  .egrand {
+    position: relative;
+    padding-top: 2rem;
+    height: 100%;
+    width: 100%;
+  }
 </style>
