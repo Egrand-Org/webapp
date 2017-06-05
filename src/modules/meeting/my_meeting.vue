@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="meeting">
     <section class="sort_container">
       <div class="sort_item">
         <div class="sort_item_container">
@@ -19,35 +19,38 @@
       </div>
     </section>
     <section class="hy_list_container">
-      <div class="hylist_container">
-        <ul>
-          <template v-for="hy in hyList">
-          <li class="hy_li" @click="clickItem(hy.id)">
-            <section>
-              <div class="hy_img text-center">
-                <span class="glyphicon glyphicon-file hy_file"></span>
-              </div>
-            </section>
-            <hgroup class="shop_right">
-              <header class="shop_detail_header">
-                <h4 class="shop_title ellipsis">{{hy.subject}}</h4>
-              </header>
-              <h5 class="fee_distance">
-                <section class="fee">
-                  状态：<template v-if="hy.status == 0">未开始</template><template v-else-if="hy.status == 1">会议中</template><template v-else>已结束</template>
-                  &nbsp;&nbsp;
-                  主持人：{{hy.presenter.name}}
-                </section>
-              </h5>
-              <h5 class="fee_distance">
-                <section class="fee">
-                  会议时间：{{hy.meetingTime}}
-                </section>
-              </h5>
-            </hgroup>
-          </li>
-          </template>
-        </ul>
+      <div class="page-loadmore-wrapper hylist_container" ref="wrapper" :style="{ height: wrapperHeight + 'px' }">
+        <mt-loadmore :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" :auto-fill="false" ref="loadmore">
+          <ul class="page-loadmore-list">
+            <li v-for="hy in hyList" class="page-loadmore-listitem hy_li" @click="clickItem(hy.id)">
+              <hgroup class="shop_right">
+                <header class="shop_detail_header">
+                  <h4 class="shop_title ellipsis">{{hy.name}}</h4>
+                </header>
+                <h5 class="fee_distance">
+                  <section class="fee">
+                    <span>
+                      <span class="glyphicon glyphicon-list" style="color: #008000;"></span>
+                      <template v-if="hy.status == 0">未开始</template><template v-else-if="hy.status == 1">会议中</template><template v-else-if="hy.status == 2">已结束</template>
+                    </span>
+                    <span>
+                      <span class="glyphicon glyphicon-map-marker" style="color: #ff0000;"></span>
+                      {{hy.hyddName}}
+                    </span>
+                  </section>
+                </h5>
+                <h5 class="fee_distance">
+                  <section class="fee">
+                    <span>
+                      <span class="glyphicon glyphicon-time" style="color: #008000;"></span>
+                      {{hy.meetingTime}}
+                    </span>
+                  </section>
+                </h5>
+              </hgroup>
+            </li>
+          </ul>
+        </mt-loadmore>
       </div>
     </section>
   </div>
@@ -59,29 +62,54 @@
     data(){
       return {
         status: this.$router.currentRoute.params.status,
-        hyList: []
-      }
+        hyList: [],
+        allLoaded: false,
+        wrapperHeight: 0,
+        pageNo: 1
+      };
     },
-    mounted(){
-      if(this.status == "my"){
-        this.$root.$emit.apply(this.$root, ['change-header'].concat(["我参加的会议", true]));
-      } else if(this.status == "attend"){
-        this.$root.$emit.apply(this.$root, ['change-header'].concat(["待参加会议", true]));
-      }
-      getPage4Meeting(this.status).then(value => {
+
+    created(){
+      getPage4Meeting(this.status, this.pageNo).then(value => {
         this.hyList = value;
       });
     },
+
+    mounted(){
+      if(this.status == "my"){
+        this.$root.$emit.apply(this.$root, ['change-header'].concat(["我的会议", true]));
+      } else if(this.status == "getDcjHyPage"){
+        this.$root.$emit.apply(this.$root, ['change-header'].concat(["待参加会议", true]));
+      } else if(this.status == "getDsyHyPage"){
+        this.$root.$emit.apply(this.$root, ['change-header'].concat(["待审阅会议", true]));
+      }
+      this.wrapperHeight = document.documentElement.clientHeight - this.$refs.wrapper.getBoundingClientRect().top;
+    },
+
     methods: {
       clickItem: function (id) {
         this.$router.push('/meeting/' + id)
+      },
+
+      loadBottom() {
+        setTimeout(() => {
+          this.pageNo += 1;
+          getPage4Meeting(this.status, this.pageNo).then(value => {
+            if(null != value && value.length > 0){
+              this.hyList = this.hyList.concat(value);  // 数据追加
+            } else {
+              this.allLoaded = true;
+            }
+            this.$refs.loadmore.onBottomLoaded();
+          });
+        }, 1500);
       }
     }
   }
 </script>
 
 <style lang="stylus" scoped>
-  .home
+  .meeting
     padding-top: 3.5rem;
     width 100%
     height 100%
@@ -155,7 +183,7 @@
               -ms-flex-align: center;
               align-items: center;
               .shop_title
-                width: 10rem;
+                width: 14rem;
                 color: #333;
                 padding-top: .01rem;
                 font: .65rem/.65rem PingFangSC-Regular;
@@ -165,7 +193,7 @@
                 text-overflow: ellipsis;
                 white-space: nowrap;
             .fee_distance
-              margin-top: 1rem;
+              margin-top: .5rem;
               display: -webkit-box;
               display: -ms-flexbox;
               display: flex;
