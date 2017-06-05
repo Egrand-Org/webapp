@@ -1,3 +1,7 @@
+const moment = require('moment');
+exports.relativeTime = time => {
+  return moment(moment(time).format('YYYYMMDD')).fromNow()
+};
 /**
  * 存储localStorage
  */
