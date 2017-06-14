@@ -2,11 +2,14 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 Vue.use(Router)
-
+//主页
 const Home = resolve => require.ensure([], () => resolve(require('../modules/home/index.vue')), 'home/index')
+//登录
 const Login = resolve => require.ensure([], () => resolve(require('../modules/login/index.vue')), 'login/index')
+//会议
 const Meeting = resolve => require.ensure([], () => resolve(require('../modules/meeting/index.vue')), 'meeting/index')
 const MeetingInfo = resolve => require.ensure([], () => resolve(require('../modules/meeting/meeting_info.vue')), 'meeting/meeting_info')
+//议题
 const IssueInfo = resolve => require.ensure([], () => resolve(require('../modules/issue/issue_info.vue')), 'issue/issue_info')
 const Issue = resolve => require.ensure([], () => resolve(require('../modules/issue/index.vue')), 'issue/index')
 const Issue4ysh = resolve => require.ensure([], () => resolve(require('../modules/issue/issue4ysh.vue')), 'issue/issue4ysh')

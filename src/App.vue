@@ -57,6 +57,7 @@
   }
   .view {
     position: relative;
+    padding-top: 2.5rem;
     height: 100%;
     width: 100%;
   }
