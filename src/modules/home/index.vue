@@ -32,7 +32,7 @@
   }
   .egrand {
     position: relative;
-    padding-top: 2rem;
+   /* padding-top: 2rem;*/
     height: 100%;
     width: 100%;
   }
