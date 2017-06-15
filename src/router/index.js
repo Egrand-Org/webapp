@@ -9,6 +9,9 @@ const Login = resolve => require.ensure([], () => resolve(require('../modules/lo
 //会议
 const Meeting = resolve => require.ensure([], () => resolve(require('../modules/meeting/index.vue')), 'meeting/index')
 const MeetingInfo = resolve => require.ensure([], () => resolve(require('../modules/meeting/meeting_info.vue')), 'meeting/meeting_info')
+const Meeting4my = resolve => require.ensure([], () => resolve(require('../modules/meeting/meeting4my.vue')), 'meeting/meeting4my')
+const Meeting4djchy = resolve => require.ensure([], () => resolve(require('../modules/meeting/meeting4djchy.vue')), 'meeting/meeting4djchy')
+const Meeting4dsyhy = resolve => require.ensure([], () => resolve(require('../modules/meeting/meeting4dsyhy.vue')), 'meeting/meeting4dsyhy')
 //议题
 const IssueInfo = resolve => require.ensure([], () => resolve(require('../modules/issue/issue_info.vue')), 'issue/issue_info')
 const Issue = resolve => require.ensure([], () => resolve(require('../modules/issue/index.vue')), 'issue/index')
@@ -64,8 +67,14 @@ export default new Router({
           ]
         },
         {
-          path : '/Meeting/todo/:status',
-          component: Meeting
+          path : '/meeting/todo/:status',
+          component: Meeting,
+          children:[
+            // {path: '', redirect: 'meeting/todo/dcjhy'},
+            {path: '/meeting/todo/my', component: Meeting4my},
+            {path: '/meeting/todo/dcjhy', component: Meeting4djchy},
+            {path: '/meeting/todo/dsyhy', component: Meeting4dsyhy}
+          ] 
         },
         {
           path : '/meeting/:id(\\d+)',
