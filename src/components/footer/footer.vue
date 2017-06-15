@@ -4,7 +4,7 @@
           <span class="glyphicon glyphicon-list icon_style" :class="$route.path.indexOf('issue') !== -1 ? 'active' : ''"></span>
           <span>我的议题</span>
         </section>
-        <section @click = "gotoAddress({path: '/meeting/todo/getDcjHyPage'})" class="guide_item">
+        <section @click = "gotoAddress({path: '/meeting/todo/my'})" class="guide_item">
           <span class="glyphicon glyphicon-list-alt icon_style" :class="$route.path.indexOf('meeting') !== -1 ? 'active' : ''"></span>
           <span>我的会议</span>
         </section>

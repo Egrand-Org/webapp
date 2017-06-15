@@ -52,6 +52,7 @@
         width: 100%;
         .active
           border-bottom: .1rem solid #26a2ff;
+          color: #26a2ff;
     .list_container
       margin-top: 2rem;
       margin-bottom: 2rem;
