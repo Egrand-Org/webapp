@@ -2,9 +2,9 @@ import axios from 'axios'
 import { Toast } from 'mint-ui';
 
 /**
- * 获取我的议题信息
+ * 获取我的议题列表
  */
-var getPage4My = () => {
+let getPage4My = () => {
   return new Promise((resolve, reject) => {
     axios.get("/api/v1/issues", {
       params: {
@@ -18,7 +18,7 @@ var getPage4My = () => {
   })
 }
 
-var getPageByStatus = (status) => {
+let getPageByStatus = (status) => {
   return new Promise((resolve, reject) => {
     axios.get("/api/v1/issues/todo/" + status).then(function(result){
       resolve(result)
@@ -59,7 +59,7 @@ let getPageByStatusExe = (status) => {
 }
 
 /**
- * 展示执行详情
+ * 展示决策执行清单详情
  * @param id
  * @returns {Promise}
  */
@@ -73,6 +73,9 @@ let openYtLog = (id) => {
   })
 }
 
+/**
+ * 用户页-用户议题数目列表
+ */
 let getReport4User = () => {
   return new Promise((resolve, reject) => {
     axios.get("api/v1/user/report").then(function(result){
