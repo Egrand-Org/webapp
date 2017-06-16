@@ -19,7 +19,11 @@ const Issue4ysh = resolve => require.ensure([], () => resolve(require('../module
 const Issue4dsh = resolve => require.ensure([], () => resolve(require('../modules/issue/issue4dsh.vue')), 'issue/issue4dsh')
 const Issue4spz = resolve => require.ensure([], () => resolve(require('../modules/issue/issue4spz.vue')), 'issue/issue4spz')
 const Issue4zxz = resolve => require.ensure([], () => resolve(require('../modules/issue/issue4zxz.vue')), 'issue/issue4zxz')
+//公告
+const Notice = resolve => require.ensure([], () => resolve(require('../modules/notice/index.vue')), 'notice/index')
+//意见
 const MyComment = resolve => require.ensure([], () => resolve(require('../modules/comment/index.vue')), 'comment/index')
+//我
 const About = resolve => require.ensure([], () => resolve(require('../modules/about/index.vue')), 'about/index')
 
 export default new Router({
@@ -99,6 +103,10 @@ export default new Router({
     {
       path : '/meeting/:id(\\d+)',
       component: MeetingInfo
+    },
+    {
+      path: '/notice',
+      component: Notice
     },
     {
       path : '/comment',

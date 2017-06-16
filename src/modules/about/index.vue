@@ -28,7 +28,7 @@
       <div class="row">
         <div class="col-xs-12">
           <mt-cell title="我待参加的会议" to="/meeting/todo/attend" is-link>
-            <span slot="icon" class="glyphicon glyphicon-list-alt" style="color:#000; vertical-align: middle;"></span>
+            <span slot="icon" class="glyphicon glyphicon-list-alt icon_style"></span>
             {{report.hys_attend ? report.hys_attend : 0}}
           </mt-cell>
         </div>
@@ -36,7 +36,7 @@
       <div class="row">
         <div class="col-xs-12">
           <mt-cell title="我已参加的会议" to="/meeting/todo/my" is-link>
-            <span slot="icon" class="glyphicon glyphicon-list-alt" style="color:#000; vertical-align: middle;"></span>
+            <span slot="icon" class="glyphicon glyphicon-list-alt icon_style"></span>
             {{report.hys_my ? report.hys_my : 0}}
           </mt-cell>
         </div>
@@ -44,7 +44,7 @@
       <div class="row">
         <div class="col-xs-12">
           <mt-cell title="待执行的议题" to="/issue/exe/todo/zxz" is-link>
-            <span slot="icon" class="glyphicon glyphicon-tasks" style="color:#000; vertical-align: middle;"></span>
+            <span slot="icon" class="glyphicon glyphicon-tasks icon_style"></span>
             {{report.yts_todo ? report.yts_todo : 0}}
           </mt-cell>
         </div>
@@ -52,7 +52,7 @@
       <div class="row">
         <div class="col-xs-12">
           <mt-cell title="待安排的议题" to="/issue/attend" is-link>
-            <span slot="icon" class="glyphicon glyphicon-calendar" style="color:#000; vertical-align: middle;"></span>
+            <span slot="icon" class="glyphicon glyphicon-calendar icon_style"></span>
             {{report.yts_arrange ? report.yts_arrange : 0}}
           </mt-cell>
         </div>
@@ -60,10 +60,17 @@
     </div>
 
     <div class="container">
+    	<div class="row">
+        <div class="col-xs-12">
+          <mt-cell title="电子公告" to="/notice" is-link>
+            <span slot="icon" class="glyphicon glyphicon-volume-up icon_style"></span>
+          </mt-cell>
+        </div>
+      </div>
       <div class="row">
         <div class="col-xs-12">
           <mt-cell title="意见反馈" to="/comment" is-link>
-            <span slot="icon" class="glyphicon glyphicon-comment" style="color:#000; vertical-align: middle;"></span>
+            <span slot="icon" class="glyphicon glyphicon-comment icon_style"></span>
           </mt-cell>
         </div>
       </div>
@@ -116,11 +123,15 @@
     margin-bottom: .75rem;
     background-color: #ffffff;
   }
-  .row {
+  .container .row {
     border-bottom: 1px solid #e6e6e6;
   }
-  .col-xs-12 {
+  .container .row .col-xs-12 {
     padding: 0rem;
+  }
+  .container .icon_style{
+  	color:#000; 
+  	vertical-align: middle;
   }
 
   /**
