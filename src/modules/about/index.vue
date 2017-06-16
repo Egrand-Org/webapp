@@ -111,7 +111,6 @@
 <style lang="stylus" scoped>
   .about {
     background-color: #e6e6e6;
-    padding-top: 2rem;
   }
   .container {
     margin-bottom: .75rem;

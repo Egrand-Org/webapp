@@ -85,7 +85,11 @@ export default new Router({
               component: Meeting4dsyhy
             }
           ] 
-        }
+        },
+        {
+		      path: '/About',
+		      component: About
+		    }
       ]
     },
     {
@@ -95,10 +99,6 @@ export default new Router({
     {
       path : '/meeting/:id(\\d+)',
       component: MeetingInfo
-    },
-    {
-      path: '/About',
-      component: About
     },
     {
       path : '/comment',
