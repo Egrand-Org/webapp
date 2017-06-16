@@ -19,6 +19,9 @@ const Issue4ysh = resolve => require.ensure([], () => resolve(require('../module
 const Issue4dsh = resolve => require.ensure([], () => resolve(require('../modules/issue/issue4dsh.vue')), 'issue/issue4dsh')
 const Issue4spz = resolve => require.ensure([], () => resolve(require('../modules/issue/issue4spz.vue')), 'issue/issue4spz')
 const Issue4zxz = resolve => require.ensure([], () => resolve(require('../modules/issue/issue4zxz.vue')), 'issue/issue4zxz')
+//决策
+const Decision = resolve => require.ensure([], () => resolve(require('../modules/decision/index.vue')), 'decision/index')
+const DecisionExe = resolve => require.ensure([], () => resolve(require('../modules/decision/decision4Exe.vue')), 'decision/decision4Exe')
 //待办事项
 const WorkTodo = resolve => require.ensure([], () => resolve(require('../modules/work/index.vue')), 'work/index')
 //制度建设
@@ -95,6 +98,16 @@ export default new Router({
               component: Meeting4dsyhy
             }
           ] 
+        },
+        {
+        	path: '/decision/:status',
+        	component: Decision,
+        	children:[
+        		{
+              path: '/decision/exe',
+              component: DecisionExe
+            },
+        	]
         },
         {
 		      path: '/About',

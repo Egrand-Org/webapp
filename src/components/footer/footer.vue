@@ -8,8 +8,8 @@
           <span class="glyphicon glyphicon-list-alt icon_style" :class="$route.path.indexOf('meeting') !== -1 ? 'active' : ''"></span>
           <span>我的会议</span>
         </section>
-        <section @click = "gotoAddress('/issue')" class="guide_item">
-          <span class="glyphicon glyphicon-ok icon_style" :class="$route.path.indexOf('order') !== -1 ? 'active' : ''"></span>
+        <section @click = "gotoAddress({path: '/decision/exe'})" class="guide_item">
+          <span class="glyphicon glyphicon-ok icon_style" :class="$route.path.indexOf('decision') !== -1 ? 'active' : ''"></span>
           <span>决策执行</span>
         </section>
         <section @click = "gotoAddress('/about')" class="guide_item">
