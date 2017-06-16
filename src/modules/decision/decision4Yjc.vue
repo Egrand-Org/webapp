@@ -45,7 +45,7 @@ import {getPageByStatusExe} from '../../service/decision'
     },
     methods: {
       clickItem: function (id) {
-//      this.$router.push('/issue/exe/' + id)
+      	this.$router.push('/meeting/' + id)
       }
     }
   }

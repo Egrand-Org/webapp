@@ -44,20 +44,7 @@ let openYt = (id) => {
 }
 
 
-/**
- * 展示决策执行清单详情
- * @param id
- * @returns {Promise}
- */
-let openYtLog = (id) => {
-  return new Promise((resolve, reject) => {
-    axios.get("/api/v1/issues/exe/" + id).then(function(result){
-      resolve(result);
-    }).catch(function(error){
-      Toast(error);
-    })
-  })
-}
+
 
 /**
  * 用户页-用户议题数目列表
@@ -72,4 +59,4 @@ let getReport4User = () => {
   })
 }
 
-export {getPage4My, getPageByStatus, openYt, openYtLog, getReport4User}
+export {getPage4My, getPageByStatus, openYt, getReport4User}

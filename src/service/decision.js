@@ -16,4 +16,19 @@ let getPageByStatusExe = (status) => {
   })
 }
 
-export {getPageByStatusExe}
+/**
+ * 展示决策执行清单详情
+ * @param id
+ * @returns {Promise}
+ */
+let openYtLog = (id) => {
+  return new Promise((resolve, reject) => {
+    axios.get("/api/v1/issues/exe/" + id).then(function(result){
+      resolve(result);
+    }).catch(function(error){
+      Toast(error);
+    })
+  })
+}
+
+export {getPageByStatusExe, openYtLog}
