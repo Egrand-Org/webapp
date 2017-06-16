@@ -19,6 +19,8 @@ const Issue4ysh = resolve => require.ensure([], () => resolve(require('../module
 const Issue4dsh = resolve => require.ensure([], () => resolve(require('../modules/issue/issue4dsh.vue')), 'issue/issue4dsh')
 const Issue4spz = resolve => require.ensure([], () => resolve(require('../modules/issue/issue4spz.vue')), 'issue/issue4spz')
 const Issue4zxz = resolve => require.ensure([], () => resolve(require('../modules/issue/issue4zxz.vue')), 'issue/issue4zxz')
+//待办事项
+const WorkTodo = resolve => require.ensure([], () => resolve(require('../modules/work/index.vue')), 'work/index')
 //制度建设
 const Institution = resolve => require.ensure([], () => resolve(require('../modules/institution/index.vue')), 'institution/index')
 const InstitutionInfo = resolve => require.ensure([], () => resolve(require('../modules/institution/institution_info.vue')), 'institution/institution_info')
@@ -108,6 +110,11 @@ export default new Router({
       path : '/meeting/:id(\\d+)',
       component: MeetingInfo
     },
+    //待办事项
+    {
+    	path: '/work/todo',
+      component: WorkTodo
+    },
     //制度建设
     {
     	path: '/institution',
@@ -128,7 +135,6 @@ export default new Router({
     	path: '/notice/:id(\\d+)',
       component: NoticeInfo
     },
-
     {
       path : '/comment',
       component: MyComment

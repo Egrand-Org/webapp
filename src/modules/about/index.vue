@@ -62,6 +62,13 @@
     <div class="container">
     	<div class="row">
         <div class="col-xs-12">
+          <mt-cell title="待办事项" to="/work/todo" is-link>
+            <span slot="icon" class="glyphicon glyphicon-tasks icon_style"></span>
+          </mt-cell>
+        </div>
+      </div>
+    	<div class="row">
+        <div class="col-xs-12">
           <mt-cell title="制度建设" to="/institution" is-link>
             <span slot="icon" class="glyphicon glyphicon-tasks icon_style"></span>
           </mt-cell>
