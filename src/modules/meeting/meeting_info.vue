@@ -3,15 +3,14 @@
     <div class="panel no-radius">
       <div class="panel-body body">
         <div class="title">
-          {{hy.subject}}
-          <span class="glyphicon glyphicon-chevron-down" style="float:right"></span>
+          {{hy.subject}}          
         </div>
         <div class="info">
           <div class="row">
-            <div class="col-xs-8">
+            <div class="col-xs-7">
               类型：<template v-if="!hy.hylx"></template><template v-else>{{hy.hylx.name}}</template>
             </div>
-            <div class="col-xs-4">
+            <div class="col-xs-5">
               主持人：<template v-if="!hy.presenter"></template><template v-else>{{hy.presenter.name}}</template>
             </div>
           </div>
@@ -117,14 +116,14 @@
       }
     },
     mounted(){
-      this.$root.$emit.apply(this.$root, ['change-header'].concat(["会议详情", true]));
+      this.$root.$emit.apply(this.$root, ['change-header'].concat(["会议详情", true ,true]));
       openMeeting(this.id).then(value => {
         this.hy = value;
       });
     },
     methods: {
       clickItem: function (id) {
-        this.$router.push('/issue/' + id)
+        // this.$router.push('/issue/' + id)
       }
     }
   }
@@ -132,61 +131,62 @@
 
 <style lang="stylus" scoped>
   .meeting
-    padding-top: 2rem;
+    /*padding-top: 2rem;*/
     width 100%
     height 100%
     .no-radius
-      border-radius 0px
-      margin-bottom 0px
+      border-radius 0
+      margin-bottom 0
     .body
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+      overflow: hidden
+      text-overflow: ellipsis
+      white-space: nowrap
       .title
-        font: 0.65rem/0.65rem PingFangSC-Regular;
+        font: 0.65rem/0.65rem PingFangSC-Regular
         font-weight 700
       .info
-        margin-top: 0.5rem;
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-        justify-content: space-between;
-        font-size: .5rem;
-        color: #666;
+        margin-top: 0.5rem
+        display: -webkit-box
+        display: -ms-flexbox
+        display: flex
+        -webkit-box-pack: justify
+        -ms-flex-pack: justify
+        justify-content: space-between
+        font-size: .5rem
+        color: #666
     .footer
-      background-color: #fff;
+      background-color: #fff
       .no-padding
-        padding 0px
+        padding 0
       .border-right
         border-right 1px solid #ccc
       .num
-        font-size: 1rem;
+        font-size: 1rem
     .confrim_order
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: flex;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      height: 2rem;
+      display: -webkit-box
+      display: -ms-flexbox
+      display: flex
+      position: fixed
+      bottom: 0
+      width: 100%
+      height: 2rem
       .info
-        background-color: #3c3c3c;
-        -webkit-box-flex: 5;
-        -ms-flex: 5;
-        flex: 5;
-        padding-left: .7rem;
-        line-height: 2rem;
-        font-size: .8rem;
-        color: #fff;
+        background-color: #3c3c3c
+        -webkit-box-flex: 5
+        -ms-flex: 5
+        flex: 5
+        z-index: 99
+        padding-left: .7rem
+        line-height: 2rem
+        font-size: .8rem
+        color: #fff
       .confrim
-        -webkit-box-flex: 2;
-        -ms-flex: 2;
-        flex: 2;
-        background-color: #56d176;
-        text-align: center;
-        line-height: 2rem;
-        font-size: .8rem;
-        color: #fff;
+        -webkit-box-flex: 2
+        -ms-flex: 2
+        flex: 2
+        background-color: #56d176
+        text-align: center
+        line-height: 2rem
+        font-size: .8rem
+        color: #fff
 </style>

@@ -35,19 +35,21 @@ export default new Router({
       component: Login
     },
     {
-      path : '/issue/:id(\\d+)',
-      component: IssueInfo
-    },
-    {
       path: '/Home',
       component: Home,
       children: [
-        { path : '', redirect: '/issue'},
+        { 
+          path : '', 
+          redirect: '/issue'
+        },
         {
           path : '/issue',
           component: Issue,
           children: [
-            {path: '', redirect: '/issue/ysh'},
+            {
+              path: '', 
+              redirect: '/issue/ysh'
+            },
             {
               path: '/issue/ysh',
               component: Issue4ysh
@@ -70,25 +72,37 @@ export default new Router({
           path : '/meeting/todo/:status',
           component: Meeting,
           children:[
-            // {path: '', redirect: 'meeting/todo/dcjhy'},
-            {path: '/meeting/todo/my', component: Meeting4my},
-            {path: '/meeting/todo/dcjhy', component: Meeting4djchy},
-            {path: '/meeting/todo/dsyhy', component: Meeting4dsyhy}
+            {
+              path: '/meeting/todo/my',
+              component: Meeting4my
+            },
+            {
+              path: '/meeting/todo/dcjhy',
+               component: Meeting4djchy
+             },
+            {
+              path: '/meeting/todo/dsyhy', 
+              component: Meeting4dsyhy
+            }
           ] 
-        },
-        {
-          path : '/meeting/:id(\\d+)',
-          component: MeetingInfo
-        },
-        {
-          path: '/About',
-          component: About
-        },
-        {
-          path : '/comment',
-          component: MyComment
         }
       ]
+    },
+    {
+      path : '/issue/:id(\\d+)',
+      component: IssueInfo
+    },
+    {
+      path : '/meeting/:id(\\d+)',
+      component: MeetingInfo
+    },
+    {
+      path: '/About',
+      component: About
+    },
+    {
+      path : '/comment',
+      component: MyComment
     }
   ]
 })

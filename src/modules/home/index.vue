@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div class="home">
     <transition name="router-fade" mode="out-in">
       <router-view class="egrand"></router-view>
     </transition>
@@ -17,7 +17,7 @@
 </script>
 
 <style lang="scss">
-  #app {
+  .home {
     height: 100%;
   }
   .router-fade-enter-active, .router-fade-leave-active {
