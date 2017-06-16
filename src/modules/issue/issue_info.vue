@@ -47,7 +47,7 @@
         </li>
       </ul>
     </div>
-    <div class="panel" style="margin-top:5px;border-radius:0px;" v-if="issue.cxryResult && issue.cxryResult.size > 0">
+    <div class="panel" style="margin-top:5px;border-radius:0px;" v-if="issue.cxryResult && issue.cxryResult.length>0">
       <div class="panel-body" style="padding:0px;">
         <ul class="list-group">
           <template v-for="(result, index) in issue.cxryResult">
