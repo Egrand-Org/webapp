@@ -4,7 +4,6 @@
 			<div class="panel-body body">
 				<div class="title">
 					{{notice.title}}
-					<span class="glyphicon glyphicon-chevron-down" style="float:right"></span>
 				</div>
 				<div class="info">
 					<div class="row">
@@ -35,9 +34,6 @@
 		<div>
 			<ul style="border-radius:0px;box-shadow:none">
 				<li class="list-group-item" style="border-right:0;border-left:0;border-bottom: 0; font-weight:700;">
-					<!--<span style="float:right;margin-left:10px;">
-              			<span class="glyphicon glyphicon-chevron-right" style="color:#ddd"></span>
-					</span>-->
 					内容
 				</li>
 			</ul>
@@ -49,9 +45,6 @@
 		<div>
 			<ul style="border-radius:0px;box-shadow:none">
 				<li class="list-group-item" style="border-right:0;border-left:0;border-bottom: 0;font-weight:700;">
-					<!--<span style="float:right;margin-left:10px;">
-              			<span class="glyphicon glyphicon-chevron-right" style="color:#ddd"></span>
-					</span>-->
 					附件
 				</li>
 			</ul>
@@ -59,11 +52,9 @@
 				<ul class="list-group">
 					<template v-for="(result, index) in notice.file">
 						<li class="list-item" v-if="(index+1) == 0" style="border-right:0px;border-left:0px;border-top: 0px;">
-							<!--<span class="badge">{{result.option}}</span>-->
 							没有附件
 						</li>
 						<li class="list-item" v-else="(index+1) > 0" style="border-right:0px;border-left:0px;">
-							<!--<span class="badge">{{result.option}}</span>-->
 							{{result.fileName}}
 						</li>
 					</template>
@@ -83,7 +74,7 @@
 			}
 		},
 		mounted() {
-			this.$root.$emit.apply(this.$root, ['change-header'].concat(["公告详情", true]));
+			this.$root.$emit.apply(this.$root, ['change-header'].concat(["公告详情", true, true]));
 			//获取详情——公告
 			openNotice(this.id).then(value => {
 				this.notice = value;

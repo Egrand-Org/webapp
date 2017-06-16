@@ -21,6 +21,7 @@ const Issue4spz = resolve => require.ensure([], () => resolve(require('../module
 const Issue4zxz = resolve => require.ensure([], () => resolve(require('../modules/issue/issue4zxz.vue')), 'issue/issue4zxz')
 //公告
 const Notice = resolve => require.ensure([], () => resolve(require('../modules/notice/index.vue')), 'notice/index')
+const NoticeInfo = resolve => require.ensure([], () => resolve(require('../modules/notice/notic_info.vue')), 'notice/notic_info')
 //意见
 const MyComment = resolve => require.ensure([], () => resolve(require('../modules/comment/index.vue')), 'comment/index')
 //我
@@ -108,6 +109,11 @@ export default new Router({
       path: '/notice',
       component: Notice
     },
+    {
+    	path: '/notice/:id(\\d+)',
+      component: NoticeInfo
+    },
+
     {
       path : '/comment',
       component: MyComment
