@@ -1,5 +1,5 @@
 <template>
-	<div class="meeting">
+	<div class="notic_info">
 		<div class="panel no-radius">
 			<div class="panel-body body">
 				<div class="title">
@@ -84,7 +84,7 @@
 </script>
 
 <style lang="stylus" scoped>
-  .meeting
+  .notic_info
     position absolute
     top 0rem
     bottom 2rem

@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="content">
     <section class="sort_container">
       <div class="sort_item">
         <div class="sort_item_container">
@@ -70,8 +70,6 @@
     },
     methods: {
       clickItem: function (id) {
-      	//TODO
-//    	Toast("建设中...")
         this.$router.push('/notice/' + id);
       }
     }
@@ -79,7 +77,7 @@
 </script>
 
 <style lang="stylus" scoped>
-  .home
+  .content
     padding-top: 3.5rem;
     width 100%
     height 100%
