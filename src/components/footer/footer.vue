@@ -2,19 +2,19 @@
     <section id='foot_guide'>
         <section @click = "gotoAddress({path: '/issue'})" class="guide_item">
           <span class="glyphicon glyphicon-list icon_style" :class="$route.path.indexOf('issue') !== -1 ? 'active' : ''"></span>
-          <span>我的议题</span>
+          <span :class="$route.path.indexOf('issue') !== -1 ? 'active' : ''">我的议题</span>
         </section>
         <section @click = "gotoAddress({path: '/meeting/todo/my'})" class="guide_item">
           <span class="glyphicon glyphicon-list-alt icon_style" :class="$route.path.indexOf('meeting') !== -1 ? 'active' : ''"></span>
-          <span>我的会议</span>
+          <span :class="$route.path.indexOf('meeting') !== -1 ? 'active' : ''">我的会议</span>
         </section>
         <section @click = "gotoAddress({path: '/decision/exe'})" class="guide_item">
           <span class="glyphicon glyphicon-ok icon_style" :class="$route.path.indexOf('decision') !== -1 ? 'active' : ''"></span>
-          <span>决策执行</span>
+          <span :class="$route.path.indexOf('decision') !== -1 ? 'active' : ''">决策执行</span>
         </section>
         <section @click = "gotoAddress('/about')" class="guide_item">
           <span class="glyphicon glyphicon-user icon_style" :class="$route.path.indexOf('about') !== -1 ? 'active' : ''"></span>
-          <span>我</span>
+          <span :class="$route.path.indexOf('about') !== -1 ? 'active' : ''">我</span>
         </section>
     </section>
 </template>
