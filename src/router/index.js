@@ -22,6 +22,7 @@ const Issue4zxz = resolve => require.ensure([], () => resolve(require('../module
 //决策
 const Decision = resolve => require.ensure([], () => resolve(require('../modules/decision/index.vue')), 'decision/index')
 const DecisionExe = resolve => require.ensure([], () => resolve(require('../modules/decision/decision4Exe.vue')), 'decision/decision4Exe')
+const DecisionYjc = resolve => require.ensure([], () => resolve(require('../modules/decision/decision4Yjc.vue')), 'decision/decision4Yjc')
 //待办事项
 const WorkTodo = resolve => require.ensure([], () => resolve(require('../modules/work/index.vue')), 'work/index')
 //制度建设
@@ -107,6 +108,10 @@ export default new Router({
               path: '/decision/exe',
               component: DecisionExe
             },
+            {
+              path: '/decision/yjc',
+              component: DecisionYjc
+            }
         	]
         },
         {

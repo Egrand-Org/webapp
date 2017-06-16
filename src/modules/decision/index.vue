@@ -5,8 +5,7 @@
         <div class="col-xs-6 center" :class="$route.path.indexOf('decision/exe') !== -1 ? 'active' : ''" @click="$router.push('/decision/exe')">
           待执行
         </div>
-        <div class="col-xs-6 center">
-        <!--<div class="col-xs-6 center" :class="$route.path.indexOf('meeting/todo/dcjhy') !== -1 ? 'active' : ''" @click="$router.push('/meeting/todo/dcjhy')">-->
+        <div class="col-xs-6 center" :class="$route.path.indexOf('decision/yjc') !== -1 ? 'active' : ''" @click="$router.push('/decision/yjc')">
           已执行
         </div>
       </div>
