@@ -20,7 +20,7 @@
       <div class="row">
         <div class="col-xs-12">
           <mt-cell title="我发起的议题" to="/issue" is-link>
-            <span slot="icon" class="glyphicon glyphicon-tasks" style="color:#000; vertical-align: middle;"></span>
+            <span slot="icon" class="glyphicon glyphicon-tasks icon_style"></span>
             {{report.yts_my ? report.yts_my : 0}}
           </mt-cell>
         </div>
@@ -60,6 +60,13 @@
     </div>
 
     <div class="container">
+    	<div class="row">
+        <div class="col-xs-12">
+          <mt-cell title="制度建设" to="/institution" is-link>
+            <span slot="icon" class="glyphicon glyphicon-tasks icon_style"></span>
+          </mt-cell>
+        </div>
+      </div>
     	<div class="row">
         <div class="col-xs-12">
           <mt-cell title="电子公告" to="/notice" is-link>

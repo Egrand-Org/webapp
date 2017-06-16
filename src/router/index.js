@@ -19,6 +19,9 @@ const Issue4ysh = resolve => require.ensure([], () => resolve(require('../module
 const Issue4dsh = resolve => require.ensure([], () => resolve(require('../modules/issue/issue4dsh.vue')), 'issue/issue4dsh')
 const Issue4spz = resolve => require.ensure([], () => resolve(require('../modules/issue/issue4spz.vue')), 'issue/issue4spz')
 const Issue4zxz = resolve => require.ensure([], () => resolve(require('../modules/issue/issue4zxz.vue')), 'issue/issue4zxz')
+//制度建设
+const Institution = resolve => require.ensure([], () => resolve(require('../modules/institution/index.vue')), 'institution/index')
+const InstitutionInfo = resolve => require.ensure([], () => resolve(require('../modules/institution/institution_info.vue')), 'institution/institution_info')
 //公告
 const Notice = resolve => require.ensure([], () => resolve(require('../modules/notice/index.vue')), 'notice/index')
 const NoticeInfo = resolve => require.ensure([], () => resolve(require('../modules/notice/notic_info.vue')), 'notice/notic_info')
@@ -105,10 +108,22 @@ export default new Router({
       path : '/meeting/:id(\\d+)',
       component: MeetingInfo
     },
+    //制度建设
+    {
+    	path: '/institution',
+      component: Institution
+    },
+    //制度建设详情
+    {
+    	path: '/institution/:id(\\d+)',
+      component: InstitutionInfo
+    },
+		//电子公告
     {
       path: '/notice',
       component: Notice
     },
+    //电子公告详情
     {
     	path: '/notice/:id(\\d+)',
       component: NoticeInfo
