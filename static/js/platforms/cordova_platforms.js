@@ -26,7 +26,7 @@
             iPad: u.indexOf('iPad') > -1 
         };
     } (),
-    language: (navigator.browserLanguage || navigator.language).toLowerCase();
+    language: (navigator.browserLanguage || navigator.language).toLowerCase()
 }
 
 //安卓加载页

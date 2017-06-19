@@ -5,7 +5,7 @@
         <div class="col-xs-12">
           <div class="user-panel">
             <div class="pull-left image">
-              <img src="./assets/img/about.jpg" class="img-circle">
+              <img :src="userinfo.userImgRes" class="img-circle">
             </div>
             <div class="pull-left info">
               <p>{{userinfo.name}}</p>
@@ -114,17 +114,20 @@
       getReport4User().then(result => {
         this.report = result;
       });
+      //从store中获取数据
       if(this.$store.state.egrandContext){
         this.userinfo = {
           name: this.$store.state.egrandContext.name,
-          ouName: this.$store.state.egrandContext.ouName
+          ouName: this.$store.state.egrandContext.ouName,
+          userImgRes: this.$store.state.egrandContext.userImgRes
         };
       } else {
           this.userinfo = {
             name: '周志虎',
             ouName: '研发部门'
           }
-      }
+      };
+      console.log(this.userinfo);
     }
   }
 </script>

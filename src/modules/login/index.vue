@@ -61,7 +61,9 @@
           Toast('请输入用户名或密码！');
           return;
         }
+        //serviec/login.js
         login(this.loginName, this.loginPassword, this.isSavePwd).then(value => {
+        	//返回数据放入store
           this.SET_EGRANDCONTEXT(value)
         })
       },
