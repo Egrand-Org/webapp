@@ -1,4 +1,5 @@
-cordova.define("cordova-plugin-media-capture.MediaFileData", function(require, exports, module) { /*
+cordova.define("cordova-plugin-splashscreen.SplashScreen", function(require, exports, module) {
+/*
  *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -19,23 +20,17 @@ cordova.define("cordova-plugin-media-capture.MediaFileData", function(require, e
  *
 */
 
-/**
- * MediaFileData encapsulates format information of a media file.
- *
- * @param {DOMString} codecs
- * @param {long} bitrate
- * @param {long} height
- * @param {long} width
- * @param {float} duration
- */
-var MediaFileData = function(codecs, bitrate, height, width, duration){
-    this.codecs = codecs || null;
-    this.bitrate = bitrate || 0;
-    this.height = height || 0;
-    this.width = width || 0;
-    this.duration = duration || 0;
+var exec = require('cordova/exec');
+
+var splashscreen = {
+    show:function() {
+        exec(null, null, "SplashScreen", "show", []);
+    },
+    hide:function() {
+        exec(null, null, "SplashScreen", "hide", []);
+    }
 };
 
-module.exports = MediaFileData;
+module.exports = splashscreen;
 
 });
