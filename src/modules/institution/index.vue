@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <section class="sort_container">
+    <!--<section class="sort_container">
       <div class="sort_item">
         <div class="sort_item_container">
           <div class="sort_item_border">
@@ -17,7 +17,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </section>-->
     <!--list-->
     <section class="hy_list_container">
       <div class="hylist_container">
@@ -77,7 +77,8 @@
 
 <style lang="stylus" scoped>
   .content
-    padding-top: 3.5rem;
+    /*padding-top: 3.5rem;*/
+    padding-top: 2rem;
     width 100%
     height 100%
     .sort_container
@@ -152,7 +153,7 @@
             -ms-flex-align: center;
             align-items: center;
             .shop_title
-              width: 10rem;
+              width: 12rem;
               color: #333;
               padding-top: .01rem;
               font: .65rem/.65rem PingFangSC-Regular;

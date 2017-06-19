@@ -10,14 +10,14 @@
 						<div class="col-xs-6">
 							紧急程度：{{notice.emergency}}
 						</div>
+						<div class="col-xs-6">
+							创建人：{{notice.createPeople}}
+						</div>
 					</div>
 				</div>
 				<div class="info">
 					<div class="row">
-						<div class="col-xs-5">
-							创建人：{{notice.createPeople}}
-						</div>
-						<div class="col-xs-4">
+						<div class="col-xs-12">
 							创建时间：{{notice.createDate}}
 						</div>
 					</div>
@@ -99,7 +99,7 @@
       .title
         font-weight 700
       .info
-        margin-top: 1rem;
+        margin-top: .5rem;
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
